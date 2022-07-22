@@ -37,7 +37,7 @@
     "vue-apexcharts": "^1.6.2",
     "vue-i18n": "^8.26.5",
     "vuetify": "^2.6.7",
-    "vuex-persistedstate": "^3.2.0"
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.18.9",
