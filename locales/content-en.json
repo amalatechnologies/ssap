@@ -47,6 +47,8 @@
       "newinsurancecard": "New insurance card",
       "activate": "Activate",
       "close": "Close",
+      "cancel": "Cancel",
+      "reviewbeneficiary": "Review beneficiary",
       "newappointment": "New appointment",
       "createselfservice": "Create Selfservice",
       "newconsultation": "New consultation",
@@ -55,19 +57,18 @@
       "newevent": "New Event"
     },
     "menu": {
-      "home":"Home",
-      "accounts":"Accounts",
-      "recenttransactions":"Recent Transactions",
-      "charges":"Charges",
-      "calculator":"Loan Calculator",
-      "thridpartytransfer":"Third Party Transfer",
-      "beneficiaries":"Manage Beneficiaries",
-      "settings":"Settings",
-      "about":"About Us",
-      "help":"Help",
-      "share":"Share",
-      "logout":"Logout"
-
+      "home": "Home",
+      "accounts": "Accounts",
+      "recenttransactions": "Recent Transactions",
+      "charges": "Charges",
+      "calculator": "Loan Calculator",
+      "thridpartytransfer": "Third Party Transfer",
+      "beneficiaries": "Manage Beneficiaries",
+      "settings": "Settings",
+      "about": "About Us",
+      "help": "Help",
+      "share": "Share",
+      "logout": "Logout"
     },
     "message": {
       "nodataavailable": "No Data available ...",
