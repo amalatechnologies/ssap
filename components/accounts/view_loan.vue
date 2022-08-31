@@ -251,6 +251,7 @@ export default {
     account: {
       type: Object,
       default: null,
+      required: true
     },
   },
   data() {
