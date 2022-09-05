@@ -46,7 +46,7 @@
     }
   ],
   "start_url": "/",
-  "display": "browser",
+  "display": "fullscreen",
   "background_color": "#A0D18C",
   "theme_color": "#A0D18C",
   "lang": "en",
