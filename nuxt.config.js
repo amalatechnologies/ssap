@@ -136,7 +136,7 @@ export default {
       ogUrl: "",
       twitterCard: "Amala Yangu",
       twitterSite: "amalaApp",
-      mobileAppIOS: "yes",
+      //mobileAppIOS: "yes",
       appleStatusBarStyle: "black-translucent",
       theme_color: "#A0D18C"
 

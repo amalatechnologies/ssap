@@ -22,7 +22,6 @@ const mutations = {
       "accessToken",
       payload.base64EncodedAuthenticationKey
     );
-    this.$router.push("/");
   },
 
   ["GET_CLIENT"](state) {
@@ -37,7 +36,7 @@ const mutations = {
   ["GET_CLIENT_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.client = payload.pageItems[0];
-
+    this.$router.push("/");
   },
   ["TENANT_UPDATED"](state, payload) {
     state.tenant = payload;
