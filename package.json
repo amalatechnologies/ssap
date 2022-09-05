@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=dev nuxt",
     "builddev": "NODE_ENV=dev nuxt build",
     "build": "nuxt build",
-    "start": "NODE_ENV=production nuxt start",
+    "start": "nuxt start",
     "devi": "backpack dev",
     "production": "DEPLOY_ENV=production nuxt build",
     "github": "DEPLOY_ENV=github nuxt build",
