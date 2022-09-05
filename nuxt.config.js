@@ -1,4 +1,4 @@
-const routerBase = process.env.DEPLOY_ENV === 'production' ? '/' : '/ssap/';
+const routerBase = process.env.DEPLOY_ENV === 'prod' ? '/ssap/' : '/';
 import metajs from './plugins/meta';
 const meta = metajs();
 export default {
@@ -34,7 +34,7 @@ export default {
       { name: "msapplication-navbutton-color", content: "#A0D18C" },
       /**iOS Safari**/
       { name: "apple-mobile-web-app-status-bar-style", content: "#A0D18C" },
-      //{ name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { hid: 'description', name: 'description', content: 'Amala Yangu self-service Web Application' },
 
@@ -45,7 +45,7 @@ export default {
 
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: process.env.DEPLOY_ENV === 'production' ? '/favicon.ico' : '/ssap/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
@@ -99,7 +99,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    publicPath: process.env.NODE_ENV === 'production' ? '/' : '/assets/',
+    publicPath: process.env.NODE_ENV === 'production' ? '/assets/' : '',
     extend(config, ctx) { },
     postcss: {
       preset: {
@@ -119,9 +119,8 @@ export default {
       color_theme: "#A0D18C",
       background_color: "#A0D18C",
       lang: 'en',
-      start_url: process.env.NODE_ENV === 'production' ? '/' : '/ssap/',
       useWebmanifestExtension: false,
-      display: 'minimal-ui'
+      display: 'browser'
     },
     meta: {
       /* meta options */
@@ -138,7 +137,7 @@ export default {
       ogUrl: "",
       twitterCard: "Amala Yangu",
       twitterSite: "amalaApp",
-      //mobileAppIOS: "yes",
+      zmobileAppIOS: "yes",
       appleStatusBarStyle: "black-translucent",
       theme_color: "#A0D18C"
 
