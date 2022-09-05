@@ -34,7 +34,7 @@ export default {
       { name: "msapplication-navbutton-color", content: "#A0D18C" },
       /**iOS Safari**/
       { name: "apple-mobile-web-app-status-bar-style", content: "#A0D18C" },
-      { name: "apple-mobile-web-app-capable", content: "yes" },
+      //{ name: "apple-mobile-web-app-capable", content: "yes" },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { hid: 'description', name: 'description', content: 'Amala Yangu self-service Web Application' },
 
