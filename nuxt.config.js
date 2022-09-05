@@ -121,7 +121,7 @@ export default {
       lang: 'en',
       start_url: '/',
       useWebmanifestExtension: false,
-      display: 'browser'
+      display: 'fullscreen'
     },
     meta: {
       /* meta options */
