@@ -120,7 +120,8 @@ export default {
       background_color: "#A0D18C",
       lang: 'en',
       start_url: '/',
-      useWebmanifestExtension: false
+      useWebmanifestExtension: false,
+      display: 'browser'
     },
     meta: {
       /* meta options */
