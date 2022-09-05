@@ -1,4 +1,4 @@
-const routerBase = process.env.DEPLOY_ENV === 'prod' ? '/ssap/' : '/';
+const routerBase = process.env.DEPLOY_ENV === 'production' ? '/ssap/' : '/';
 import metajs from './plugins/meta';
 const meta = metajs();
 export default {
@@ -99,7 +99,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    publicPath: process.env.NODE_ENV === 'production' ? '/assets/' : '',
+    publicPath: process.env.NODE_ENV === 'production' ? '/assets/' : '/',
     extend(config, ctx) { },
     postcss: {
       preset: {
