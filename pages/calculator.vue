@@ -11,7 +11,7 @@
         <p>
           NEW loan Application for Client A1 A1
         </p>
-        <v-spacer></v-spacer>
+        <br>
         <p> Account number 000000131
         </p>
       </v-col>
