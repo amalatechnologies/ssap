@@ -45,7 +45,7 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/ssap/?standalone=true",
+  "start_url": "https://amalatechnologies.github.io/ssap",
   "display": "minimal-ui",
   "background_color": "#A0D18C",
   "theme_color": "#A0D18C",
