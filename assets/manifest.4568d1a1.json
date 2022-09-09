@@ -46,7 +46,7 @@
     }
   ],
   "start_url": "/ssap/?standalone=true",
-  "display": "standalone",
+  "display": "browser",
   "background_color": "#A0D18C",
   "theme_color": "#A0D18C",
   "lang": "en",
