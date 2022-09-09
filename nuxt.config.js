@@ -119,8 +119,7 @@ export default {
       color_theme: "#A0D18C",
       background_color: "#A0D18C",
       lang: 'en',
-      useWebmanifestExtension: false,
-      display: 'browser'
+      useWebmanifestExtension: false
     },
     meta: {
       /* meta options */
@@ -137,7 +136,7 @@ export default {
       ogUrl: "",
       twitterCard: "Amala Yangu",
       twitterSite: "amalaApp",
-      zmobileAppIOS: "yes",
+      mobileAppIOS: "yes",
       appleStatusBarStyle: "black-translucent",
       theme_color: "#A0D18C"
 
