@@ -119,7 +119,7 @@ export default {
       color_theme: "#A0D18C",
       background_color: "#A0D18C",
       lang: 'en',
-      display: 'fullscreen',
+      display: 'minimal-ui',
       useWebmanifestExtension: false
     },
     meta: {
