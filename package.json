@@ -5,11 +5,12 @@
   "description": "Amala Self service webb app",
   "scripts": {
     "dev": "NODE_ENV=dev nuxt",
-    "build": "NODE_ENV=dev nuxt build",
+    "builddev": "NODE_ENV=dev nuxt build",
+    "build": "nuxt build",
     "start": "NODE_ENV=production nuxt start",
     "devi": "backpack dev",
     "production": "DEPLOY_ENV=prod nuxt build",
-    "deploy": "npm cache clean --force && npm install npm@latest -g && npm install --force node-sass && npm install --force && npm audit fix && nuxt build",
+    "deploy": "npm cache clean --force && npm install --force node-sass && npm install --force && npm audit fix && nuxt build",
     "generate": "NODE_ENV=production nuxt-ts generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
@@ -17,7 +18,7 @@
   },
   "engines": {
     "npm": "8.13.2",
-    "node": ">=14.17.1 <18"
+    "node": ">=14.17.1 <15"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.5",
@@ -27,7 +28,7 @@
     "cookie-universal-nuxt": "^2.2.1",
     "core-js": "^3.23.5",
     "fibers": "^5.0.1",
-    "nuxt": "^2.12.2",
+    "nuxt": "^2.15.8",
     "nuxt-material-design-icons": "^1.0.4",
     "secure-ls": "^1.2.6",
     "sweetalert": "^2.1.2",
