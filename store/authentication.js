@@ -46,6 +46,7 @@ const mutations = {
 const actions = {
   async _authenticate({ commit, dispatch }, requestbody) {
     commit("AUTHENTICATE");
+    delete this.$api.defaults.headers.common["Authorization"];
     await this.$api
       .$post("authentication", requestbody)
       .then((response) => {
