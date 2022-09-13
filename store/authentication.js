@@ -3,6 +3,8 @@ const state = () => ({
   profile: {},
   client: {},
   tenant: "",
+  accessToken: null,
+  profileImage: null
 });
 
 const mutations = {
@@ -18,8 +20,8 @@ const mutations = {
   ["AUTHENTICATE_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.profile = payload;
-    window.localStorage.setItem(
-      "accessToken",
+    state.accessToken = payload.base64EncodedAuthenticationKey;
+    localStorage.setItem("accessToken",
       payload.base64EncodedAuthenticationKey
     );
   },
@@ -38,6 +40,22 @@ const mutations = {
     state.client = payload.pageItems[0];
     this.$router.push("/");
   },
+  ["GET_CLIENT_IMAGE"](state) {
+    state.showLoader = true;
+  },
+  ["GET_CLIENT_IMAGE_ERROR"](state) {
+    state.showLoader = false;
+  },
+  ["GET_CLIENT_IMAGE_SUCCESS"](state, payload) {
+    state.showLoader = false;
+    console.log(payload)
+    state.profileImage = payload;
+  },
+  ["LOGOUT_SESSION"](state, payload) {
+    state.tenant = "demo";
+    state.accessToken = null;
+  },
+
   ["TENANT_UPDATED"](state, payload) {
     state.tenant = payload;
     localStorage.setItem("tenant", payload);
@@ -58,12 +76,13 @@ const actions = {
         commit("AUTHENTICATE_ERROR");
       });
   },
-  async selfserviceclient({ commit }) {
+  async selfserviceclient({ commit, dispatch }) {
     commit("GET_CLIENT");
     await this.$api
       .$get("clients")
       .then((response) => {
         commit("GET_CLIENT_SUCCESS", response);
+        dispatch("_getclientprofile", response.pageItems[0].id, { root: true });
       })
       .catch((error) => {
         console.log(error);
@@ -71,11 +90,26 @@ const actions = {
       });
   },
 
+  async _getclientprofile({ commit }, Id) {
+    commit("GET_CLIENT_IMAGE");
+    console.log(Id)
+    await this.$api
+      .$get(`clients/${Id}/images?maxHeight=150`)
+      .then((response) => {
+        commit("GET_CLIENT_IMAGE_SUCCESS", response);
+      })
+      .catch((error) => {
+        console.log(error);
+        commit("GET_CLIENT_IMAGE_ERROR");
+      });
+  },
+
   async _logoutsession({ commit }) {
     //window.localStorage.clear();
-    window.localStorage.removeItem("vuex");
+    window.localStorage.clear();
     //window.localStorage.removeItem("accessToken");
     sessionStorage.clear();
+    commit('LOGOUT_SESSION')
     this.$router.push("/signin");
   },
   _updatetenant({ commit }, payload) {
@@ -84,7 +118,7 @@ const actions = {
 };
 const getters = {
   accessToken: function (state) {
-    return window.localStorage.getItem("accessToken");
+    return state.accessToken;
   },
   clientId: function (state) {
     return state.client.id;
@@ -96,13 +130,16 @@ const getters = {
     return state.profile;
   },
   isAuthenticated: function (state) {
-    return window.localStorage.getItem("accessToken") == null ? false : true;
+    return state.accessToken == null ? false : true;
   },
   tenant: function (state) {
     var _tenant = state.tenant;
     console.log("STATE TENANT: " + _tenant);
     return _tenant == null ? "demo" : _tenant;
   },
+  profileImage: function (state) {
+    return state.profileImage;
+  }
 
 };
 
