@@ -52,8 +52,10 @@ const mutations = {
     state.profileImage = payload;
   },
   ["LOGOUT_SESSION"](state, payload) {
-    state.tenant = "demo";
+    //state.tenant = "demo";
+    window.localStorage.removeItem("accessToken");
     state.accessToken = null;
+    this.$router.push("/signin");
   },
 
   ["TENANT_UPDATED"](state, payload) {
@@ -105,15 +107,13 @@ const actions = {
   },
 
   async _logoutsession({ commit }) {
-    //window.localStorage.clear();
-    window.localStorage.clear();
-    //window.localStorage.removeItem("accessToken");
     sessionStorage.clear();
     commit('LOGOUT_SESSION')
-    this.$router.push("/signin");
+
   },
-  _updatetenant({ commit }, payload) {
+  _updatetenant({ commit, dispatch }, payload) {
     commit("TENANT_UPDATED", payload);
+    dispatch("_logoutsession", null, { root: true });
   },
 };
 const getters = {

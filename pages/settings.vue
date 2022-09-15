@@ -5,27 +5,33 @@
         <v-toolbar color="primary" tile dark flat>
           <v-toolbar-title>
             <v-avatar color="primary " size="36">
-              <span class="white--text font-weight-bold overline" @click.stop="$router.go(-1)">
+              <span
+                class="white--text font-weight-bold overline"
+                @click.stop="$router.go(-1)"
+              >
                 <v-icon large color="white">mdi-keyboard-backspace</v-icon>
               </span>
             </v-avatar>
           </v-toolbar-title>
           <v-toolbar-title class="white--text">
-            &nbsp; &nbsp; Settings</v-toolbar-title>
+            &nbsp; &nbsp; Settings</v-toolbar-title
+          >
         </v-toolbar>
         <v-list dense>
           <p class="px-3">Accounts</p>
           <v-list-item two-lin class="py-0 my-0" dense two-line>
             <v-list-item-content>
               <v-list-item-title>Change Password</v-list-item-title>
-              <v-list-item-subtitle class="text-body-2 font-weight-normal mt-1">Change your account password
+              <v-list-item-subtitle class="text-body-2 font-weight-normal mt-1"
+                >Change your account password
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
           <v-list-item two-lin class="py-0 my-0" dense two-line>
             <v-list-item-content>
               <v-list-item-title>Change Passcode</v-list-item-title>
-              <v-list-item-subtitle class="text-body-2 font-weight-normal mt-1">Change app passcode
+              <v-list-item-subtitle class="text-body-2 font-weight-normal mt-1"
+                >Change app passcode
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
@@ -34,17 +40,30 @@
           <v-list-item two-lin class="py-0 my-0" dense two-line>
             <v-list-item-content>
               <v-list-item-title>Language</v-list-item-title>
-              <v-list-item-subtitle class="text-body-2 font-weight-normal mt-1">Choose language
+              <v-list-item-subtitle class="text-body-2 font-weight-normal mt-1"
+                >Choose language
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-          <v-dialog v-model="dialog" transition="dialog-bottom-transition" width="500">
+          <v-dialog
+            v-model="dialog"
+            transition="dialog-bottom-transition"
+            width="500"
+          >
             <template v-slot:activator="{ on, attrs }">
-              <v-list-item v-bind="attrs" v-on="on" two-lin class="py-0 my-0" dense two-line>
+              <v-list-item
+                v-bind="attrs"
+                v-on="on"
+                two-lin
+                class="py-0 my-0"
+                dense
+                two-line
+              >
                 <v-list-item-content>
                   <v-list-item-title>Update Endpoint</v-list-item-title>
-                  <v-list-item-subtitle class="text-body-2 font-weight-normal mt-1">Click here to change your endpoint
-                    configurations
+                  <v-list-item-subtitle
+                    class="text-body-2 font-weight-normal mt-1"
+                    >Click here to change your endpoint configurations
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -57,11 +76,22 @@
 
               <v-card-text>
                 <v-form ref="form" v-model="valid" lazy-validation>
-                  <v-text-field v-model="settings.url" :rules="[(v) => !!v || 'Field is required']" label="Base URL"
-                    hint="Enter the Base URL" required readonly></v-text-field>
+                  <v-text-field
+                    v-model="settings.url"
+                    :rules="[(v) => !!v || 'Field is required']"
+                    label="Base URL"
+                    hint="Enter the Base URL"
+                    required
+                    readonly
+                  ></v-text-field>
 
-                  <v-text-field v-model="settings.tenant" :rules="tenantrules" label="Tenant" hint="Enter tenant name"
-                    required></v-text-field>
+                  <v-text-field
+                    v-model="settings.tenant"
+                    :rules="tenantrules"
+                    label="Tenant"
+                    hint="Enter tenant name"
+                    required
+                  ></v-text-field>
                 </v-form>
               </v-card-text>
 
@@ -100,7 +130,7 @@ export default {
   created() {
     var tenant = localStorage.getItem("tenant");
     this.settings.url = "https://demo.amala.app";
-    this.settings.tenant = tenant;
+    this.settings.tenant = this.tenant;
   },
   methods: {
     submit: function () {
@@ -113,8 +143,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      tenant: 'tenant'
-    })
+      tenant: "tenant",
+    }),
   },
 };
 </script>
