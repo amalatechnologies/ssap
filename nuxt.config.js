@@ -119,8 +119,6 @@ export default {
       color_theme: "#A0D18C",
       background_color: "#A0D18C",
       lang: 'en',
-      start_url: 'https://amalatechnologies.github.io/ssap',
-      display: 'standalone',
       useWebmanifestExtension: false
     },
     meta: {

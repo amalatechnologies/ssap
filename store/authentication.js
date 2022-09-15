@@ -105,7 +105,6 @@ const actions = {
   },
 
   async _logoutsession({ commit }) {
-    sessionStorage.clear();
     commit('LOGOUT_SESSION')
 
   },
