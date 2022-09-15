@@ -48,7 +48,6 @@ const mutations = {
   },
   ["GET_CLIENT_IMAGE_SUCCESS"](state, payload) {
     state.showLoader = false;
-    console.log(payload)
     state.profileImage = payload;
   },
   ["LOGOUT_SESSION"](state, payload) {
@@ -94,7 +93,6 @@ const actions = {
 
   async _getclientprofile({ commit }, Id) {
     commit("GET_CLIENT_IMAGE");
-    console.log(Id)
     await this.$api
       .$get(`clients/${Id}/images?maxHeight=150`)
       .then((response) => {
@@ -134,7 +132,6 @@ const getters = {
   },
   tenant: function (state) {
     var _tenant = state.tenant;
-    console.log("STATE TENANT: " + _tenant);
     return _tenant == null ? "demo" : _tenant;
   },
   profileImage: function (state) {

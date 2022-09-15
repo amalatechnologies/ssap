@@ -27,9 +27,6 @@ export default function ({ $axios, redirect, store }, inject) {
     api.setHeader("Access-Control-Allow-Headers", "x-access-token, Origin, Content-Type, Accept");
     api.setHeader("Fineract-Platform-TenantId", tenant.trim())
     api.setHeader("Access-Control-Allow-Origin", "*");
-
-    console.log("IS AUTHENTICATION? : " + (config.url != "authentication"))
-    console.log("CONFIG URL : " + config.url)
     if (config.url != "authentication") {
       api.setHeader("Authorization", "Basic " + token);
     }
