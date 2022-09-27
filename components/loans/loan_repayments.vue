@@ -32,7 +32,7 @@
                 </td>
                 <td>
                   {{ repayments.currency.code }}
-                  {{ period.principalDue | currency }}
+                  {{ period.totalDueForPeriod | currency }}
                 </td>
               </tr>
             </template>
