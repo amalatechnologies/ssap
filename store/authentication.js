@@ -127,7 +127,10 @@ const getters = {
     return state.profile;
   },
   isAuthenticated: function (state) {
-    return state.accessToken == null ? false : true;
+    return (state.accessToken != null && state.profile.playstoreAccessAllowed) ? true : false;
+  },
+  isPlayStoreAccessAllowed: function (state) {
+    return state.profile.playstoreAccessAllowed;
   },
   tenant: function (state) {
     var _tenant = state.tenant;

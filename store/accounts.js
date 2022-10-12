@@ -54,14 +54,14 @@ const getters = {
   },
 
   totalLoanBalance: function (state) {
-    return state.loanAccounts.filter(e => e.loanBalance != undefined).reduce(function (accumulator, b) {
+    return state.loanAccounts != undefined ?  state.loanAccounts.filter(e => e.loanBalance != undefined).reduce(function (accumulator, b) {
       return accumulator + b.loanBalance
-    }, 0)
+    }, 0) : "0"
   },
   totalSavingBalance: function (state) {
-    return state.savingsAccounts.filter(e => e.accountBalance != undefined).reduce(function (accumulator, b) {
+    return state.savingsAccounts != undefined ? state.savingsAccounts.filter(e => e.accountBalance != undefined).reduce(function (accumulator, b) {
       return accumulator + b.accountBalance
-    }, 0)
+    }, 0) : "0"
   }
 }
 
