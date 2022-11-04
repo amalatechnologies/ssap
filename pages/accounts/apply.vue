@@ -50,7 +50,7 @@
         </v-col>
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
           <v-text-field
-            v-model="loanapplication.currency"
+            v-model="currency"
             label="Currency*"
             hint="Currency"
             required
@@ -153,7 +153,9 @@
           </v-simple-table>
         </v-col>
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
-          <v-btn color="primary" block>Submit Loan</v-btn></v-col
+          <v-btn color="primary" block @click="submitLoanApplication"
+            >Submit Loan</v-btn
+          ></v-col
         >
       </v-row>
     </v-container>
@@ -170,9 +172,55 @@ export default {
       sumittedonmenu: false,
       expecteddisbursementdate: null,
       expecteddisbursementmenu: false,
+      deductions: {
+        psssf: 0,
+        dowuta: 0,
+        other: 0,
+        bank: 0,
+        rent: 0,
+        bcs: 0,
+        paye: 0,
+        bcsloan: 0,
+      },
+      earnings: {
+        hardship: 0,
+        salary: 0,
+        transport: 0,
+      },
+      repaymentSchedule: null,
+      producttemplate: null,
+      activePicker: null,
+      submittedondate: "",
+      sumittedonmenu: false,
+      expecteddisbursementdate: null,
+      expecteddisbursementmenu: false,
+      currency: "",
+      charges: [],
       loanapplication: {
+        clientId: 0,
         productId: 0,
-        purpose: 0,
+        disbursementData: [],
+        principal: 0,
+        loanTermFrequency: 0,
+        loanTermFrequencyType: 0,
+        numberOfRepayments: 0,
+        repaymentEvery: 0,
+        repaymentFrequencyType: 0,
+        interestRatePerPeriod: 0,
+        amortizationType: 0,
+        isEqualAmortization: false,
+        interestType: 0,
+        interestCalculationPeriodType: 0,
+        allowPartialPeriodInterestCalcualtion: false,
+        transactionProcessingStrategyId: 0,
+        loanPurposeId: 0,
+        clientCurrentIncome: "",
+        charges: [],
+        locale: "en",
+        dateFormat: "dd MMMM yyyy",
+        loanType: "individual",
+        expectedDisbursementDate: "",
+        submittedOnDate: "",
       },
     };
   },
@@ -191,7 +239,56 @@ export default {
         })
         .then((response) => {
           this.producttemplate = response;
-          this.loanapplication.currency =
+          var charges = [];
+          if (response.charges.length > 0) {
+            this.charges = response.charges;
+            response.charges.forEach((c) => {
+              var change = {
+                chargeId: c.chargeId,
+                amount: c.amount,
+                dueDate: this.submittedondate,
+              };
+              charges.push(change);
+            });
+          }
+          /**this.loanapplication.currency =
+            response.currency.name + ` [${response.currency.code}]`;
+
+          this.loanapplication.principal = response.principal;
+          **/
+          this.loanapplication.clientId = this.clientId;
+          this.loanapplication.productId = response.product.id;
+          if (response.fundOptions) {
+            this.loanapplication.fundId = response.fundOptions[0].id;
+          }
+          this.loanapplication.principal = response.approvedPrincipal;
+          this.loanapplication.loanTermFrequency = response.termFrequency;
+          this.loanapplication.loanTermFrequencyType =
+            response.termPeriodFrequencyType.id;
+          this.loanapplication.numberOfRepayments = response.numberOfRepayments;
+          this.loanapplication.repaymentEvery = response.repaymentEvery;
+          this.loanapplication.repaymentFrequencyType =
+            response.repaymentFrequencyType.id;
+          this.loanapplication.interestRatePerPeriod =
+            response.interestRatePerPeriod;
+          this.loanapplication.amortizationType = response.amortizationType.id;
+          this.loanapplication.isEqualAmortization =
+            response.isEqualAmortization;
+          this.loanapplication.interestType = response.interestType.id;
+          this.loanapplication.interestCalculationPeriodType =
+            response.interestCalculationPeriodType.id;
+          this.loanapplication.allowPartialPeriodInterestCalcualtion =
+            response.allowPartialPeriodInterestCalcualtion;
+          this.loanapplication.transactionProcessingStrategyId =
+            response.transactionProcessingStrategyId;
+          this.loanapplication.loanPurposeId =
+            response.loanPurposeOptions[0].id;
+          this.loanapplication.charges = charges;
+          this.loanapplication.submittedOnDate = this.expecteddisbursementdate;
+          this.loanapplication.expectedDisbursementDate =
+            this.expecteddisbursementdate;
+
+          this.currency =
             response.currency.name + ` [${response.currency.code}]`;
           this.loanapplication.principal = response.principal;
         });
@@ -202,9 +299,18 @@ export default {
     expecteddisbursementdate(date) {
       this.$refs.expecteddisbursementmenu.save(date);
     },
+    submitLoanApplication: function () {
+      console.log(this.loanapplication);
+      this.$store.dispatch("_applyloan", this.loanapplication);
+    },
   },
   created() {
     this.loadtemplate();
+    var d = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
+    var date =
+      d.getDate() + " " + this.months[d.getMonth()] + " " + d.getFullYear();
+    this.submittedondate = date;
+    this.expecteddisbursementdate = date;
   },
   watch: {
     sumittedonmenu(val) {

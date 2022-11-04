@@ -9,6 +9,12 @@ Vue.mixin({
   data: function () {
     return {
       mobileBreakPoint: 200,
+      months: [
+        "January", "February", "March",
+        "April", "May", "June",
+        "July", "August", "September",
+        "October", "November", "December"
+      ]
     };
   },
   methods: {
