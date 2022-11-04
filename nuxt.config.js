@@ -109,7 +109,14 @@ export default {
       }
     },
     terser: {
-      extractComments: false // default was LICENSES
+      extractComments: false, // default was LICENSES
+      // https://github.com/terser/terser#compress-options
+      //Disable console log in production
+      terserOptions: {
+        compress: {
+          drop_console: true
+        }
+      }
     }
   },
   pwa: {
