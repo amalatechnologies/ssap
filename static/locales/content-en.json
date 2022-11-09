@@ -68,7 +68,8 @@
       "about": "About Us",
       "help": "Help",
       "share": "Share",
-      "logout": "Logout"
+      "logout": "Logout",
+      "guarantors":"Guarantors"
     },
     "message": {
       "nodataavailable": "No Data available ...",
