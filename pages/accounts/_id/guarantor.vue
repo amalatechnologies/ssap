@@ -67,7 +67,9 @@ export default {
           loanId: this.$route.params.id,
           data: this.guarantor
         }
-        this.$store.dispatch("_applyguarantor", payload)
+        this.$store.dispatch("_applyguarantor", payload).then(() => {
+          this.$router.go(-1)
+        });
       }
     }
   },
