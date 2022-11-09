@@ -20,7 +20,7 @@ export default {
 
   env: {
     baseUrl: 'https://demo.amala.app/fineract-provider/api/v1/self/',
-    localUrl: 'https://localhost:8443/fineract-provider/api/v1/self/'
+    localUrl: 'https://demo.amala.app/fineract-provider/api/v1/self/'
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
