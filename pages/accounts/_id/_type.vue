@@ -57,7 +57,7 @@ export default {
     return {
       account: null,
       items: [
-        { title: 'Create Guarantor' },
+        { title: 'View Guarantors' },
       ],
     };
   },
@@ -104,7 +104,7 @@ export default {
         .catch((error) => { });
     },
     applyguarantor() {
-      this.$router.push(`/accounts/${this.$route.params.id}/guarantor`)
+      this.$router.push(`/accounts/${this.$route.params.id}/guarantors`)
     }
   },
   computed: {

@@ -2,11 +2,13 @@ import Vue from "vue";
 import { mapGetters } from "vuex";
 import LoanChargeComponent from "@/components/charges/loan_charges.vue"
 import GuarantorRequestComponent from "@/components/guarantors/guarantor_request.vue"
+import GuarantorDetailsComponent from "@/components/guarantors/guarantor-details.vue"
 Vue.mixin({
   layout: "default",
   components: {
     'loan-charge-component': LoanChargeComponent,
-    'guarantor-request': GuarantorRequestComponent
+    'guarantor-request': GuarantorRequestComponent,
+    'guarantor-details': GuarantorDetailsComponent,
   },
   data: function () {
     return {

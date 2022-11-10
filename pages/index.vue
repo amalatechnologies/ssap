@@ -159,6 +159,7 @@ export default {
   created() {
     this.$store.dispatch("selfserviceclient");
     this.$store.dispatch("_getaccounts", this.clientId);
+    this.$store.dispatch("_retrieveguarantors", this.clientId);
   },
   mounted: function () {
     if (!this.authenticated) {

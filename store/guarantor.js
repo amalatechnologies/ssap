@@ -97,7 +97,7 @@ const getters = {
     return state.guarantorrequests;
   },
   guarantorrequestsize: function (state) {
-    return state.guarantorrequests.length();
+    return state.guarantorrequests.length;
   },
   guarantorrequest: (state) => (requestId) => {
     return state.guarantorrequests.find(x => x.requestId == requestId)

@@ -23,13 +23,17 @@
         </v-card>
 
         <div v-for="(setting, index) in settings" :key="index">
+
           <v-list-item @click="navigateToHere(setting.to)">
             <v-list-item-title class="font-weight-light">
               <v-icon slot="prependIcon" v-html="setting.icon" :medium="!showback" :small="showback" color=" primary"
                 class="ml-1 mr-2"></v-icon>
-              {{ $t(setting.title) }}
+              <v-badge :content="index === 7 ? requests : ''" :value="index === 7 ? requests : ''" color="green">
+                {{ $t(setting.title) }}
+              </v-badge>
             </v-list-item-title>
           </v-list-item>
+
           <v-divider v-if="index == 7" class="py-2"></v-divider>
         </div>
       </v-list>
@@ -305,6 +309,7 @@ export default {
   computed: {
     ...mapGetters({
       profile: "client",
+      requests: "guarantorrequestsize"
     }),
     notificationnumber() {
       return this.notifications.length;
