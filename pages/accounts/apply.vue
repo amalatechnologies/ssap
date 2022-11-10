@@ -24,7 +24,7 @@
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
           <v-select
             :items="producttemplate.loanPurposeOptions"
-            v-model="loanapplication.purposeId"
+            v-model="loanapplication.loanPurposeId"
             label="Loan purpose"
             item-text="name"
             item-value="id"
