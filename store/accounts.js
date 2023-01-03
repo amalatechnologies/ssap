@@ -44,7 +44,6 @@ const actions = {
     commit("GET_ACCOUNTS");
     await this.$axios.$get(`/api/clients/${clientId}/accounts`)
       .then(response => {
-        console.log(response)
         commit("GET_ACCOUNTS_SUCCESS", response);
       }).catch(error => {
         commit("GET_ACCOUNTS_ERROR");
