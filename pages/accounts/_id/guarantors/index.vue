@@ -8,7 +8,11 @@
   </v-container>
   <v-container v-else>
     <v-list three-line>
-      <v-list-item class="ma-0 pa-0" v-for="(guarantor, index) in guarantors" :key="index">
+      <v-list-item
+        class="ma-0 pa-0"
+        v-for="(guarantor, index) in guarantors"
+        :key="index"
+      >
         <v-list-item-content>
           <guarantor-details :guarantor="guarantor"></guarantor-details>
         </v-list-item-content>
@@ -22,20 +26,20 @@ export default {
   data() {
     return {
       guarantors: [],
-    }
+    };
   },
   created() {
-    this.getloanguarantors()
+    this.getloanguarantors();
   },
   methods: {
     async getloanguarantors() {
-      await this.$api
-        .$get(`loans/${this.$route.params.id}/guarantors`)
+      await this.$axios
+        .$get(`/api/loans/${this.$route.params.id}/guarantors`)
         .then((response) => {
           this.guarantors = response;
         })
-        .catch((error) => { });
+        .catch((error) => {});
     },
-  }
-}
+  },
+};
 </script>

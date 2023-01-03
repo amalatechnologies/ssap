@@ -229,8 +229,8 @@ export default {
       this.$store.dispatch("_getloanapplicationtemplate", this.clientId);
     },
     async productchange() {
-      await this.$api
-        .$get("loans/template", {
+      await this.$axios
+        .$get("/api/loans/template", {
           params: {
             clientId: this.clientId,
             templateType: "individual",
