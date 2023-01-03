@@ -56,18 +56,13 @@
                     >
                     </v-text-field>
 
-                    <p
+                    <v-chip
                       v-if="!tenant"
-                      class="
-                        d-flex
-                        justify-center
-                        blue--text
-                        text-h6 text-decoration-underline
-                      "
+                      class="d-flex justify-center blue--text text-h6"
                       @click="tenant = !tenant"
                     >
                       Change default Tenant
-                    </p>
+                    </v-chip>
                     <v-text-field
                       v-else
                       label="Chnage default Tenant Identifier"
