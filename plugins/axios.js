@@ -1,47 +1,39 @@
-import Vue from 'vue';
-import VueToasted from 'vue-toasted';
-Vue.use(VueToasted, {
-  iconPack: 'mdi' // set your iconPack, defaults to material. material|fontawesome|custom-class
-})
+export default function ({ $axios, store, redirect }) {
+  $axios.onRequest(config => {
+    const token = localStorage.getItem('accessToken')
+    $axios.setHeader('Content-Type', 'application/json; charset=utf8')
+    $axios.setHeader('crossorigin', 'true')
+    $axios.setHeader("Access-Control-Allow-Origin", "*");
+    $axios.setHeader("Access-Control-Allow-Credentials", "true")
+    $axios.setHeader("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With");
 
+    $axios.setHeader('Cache-Control: no-cache, no-store, must-revalidate');
+    $axios.setHeader('Pragma: no-cache');
+    $axios.setHeader('Expires: 0');
 
-export default function ({ $axios, redirect, store }, inject) {
-  $axios.setHeader('Content-Type', 'application/json');
-  //$axios.setToken(store.getters.accessToken, 'Bearer');
-
-
-  const api = $axios.create({
-    headers: {
-      common: {
-        Accept: "application/json, text/plain, */*",
-        'Content-Type': 'application/json'
-      },
-    },
-  });
-
-  api.onRequest(config => {
-    var token = localStorage.getItem('accessToken')
     var _tenant = localStorage.getItem('tenant');
     var tenant = _tenant == null ? "demo" : _tenant;
     console.log(tenant)
 
-    api.setHeader("Access-Control-Allow-Headers", "x-access-token, Origin, Content-Type, Accept");
-    api.setHeader("Fineract-Platform-TenantId", tenant.trim())
-    api.setHeader("Access-Control-Allow-Origin", "*");
+    $axios.setHeader("Access-Control-Allow-Headers", "x-access-token, Origin, Content-Type, Accept");
+
+    $axios.setHeader("Access-Control-Allow-Origin", "*");
     if (config.url != "authentication" && token != null) {
-      api.setHeader("Authorization", "Basic " + token);
+      $axios.setHeader("Authorization", "Basic " + token);
+      $axios.setHeader("Fineract-Platform-TenantId", tenant.trim())
     }
-  });
-
-  api.onError(error => {
-    const message = error.response.data.defaultUserMessage
-    const code = parseInt(error.response && error.response.status)
-
   })
-  api.onResponse(response => {
-    // Vue.toasted.show('Success ', { icon: 'check-circle', type: 'success' });
-  });
-  api.onResponseError(error => {
+
+  $axios.onError(error => {
+    const code = parseInt(error.response && error.response.status)
+    if (code === 400) {
+      redirect('/400')
+    }
+    if (code === 401) {
+      store.dispatch('_logoutsession')
+    }
+  })
+  $axios.onResponseError(error => {
     const code = parseInt(error.response && error.response.status)
     if (code === 404) {
       const message = error.response.data.defaultUserMessage
@@ -58,17 +50,4 @@ export default function ({ $axios, redirect, store }, inject) {
       });
     }
   });
-
-  // Set baseURL to something different
-  // eslint-disable-next-line no-console
-
-  /** For UI developers with no local API **/
-  /* api.setBaseURL(  process.env.baseUrl ); */
-
-
-  /**For production */
-  api.setBaseURL(process.env.NODE_ENV === "production" ? process.env.baseUrl : process.env.localUrl);
-  // Inject to context as $api
-  inject("api", api);
-}
-
+} 

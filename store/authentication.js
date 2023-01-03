@@ -66,10 +66,13 @@ const actions = {
   async _authenticate({ commit, dispatch }, requestbody) {
     commit("AUTHENTICATE");
     delete this.$api.defaults.headers.common["Authorization"];
+    delete this.$axios.defaults.headers.common["Fineract-Platform-TenantId"];
+    this.$axios.setHeader("Fineract-Platform-TenantId", requestbody.tenant)
     await this.$axios
-      .$post("/api/authentication", requestbody)
+      .$post("/api/authentication", { username: requestbody.username, password: requestbody.password })
       .then((response) => {
         commit("AUTHENTICATE_SUCCESS", response);
+        commit("TENANT_UPDATED", requestbody.tenant)
         dispatch("selfserviceclient", null, { root: true });
       })
       .catch((error) => {
