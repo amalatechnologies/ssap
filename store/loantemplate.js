@@ -23,7 +23,7 @@ const mutations = {
 const actions = {
   async _getloanapplicationtemplate({ commit }, clientId) {
     commit("GET_LOAN_APPLICATION_TEMPLATE");
-    await this.$api.$get("loans/template", { params: { clientId: clientId, templateType: 'individual' } })
+    await this.$axios.$get("/api/loans/template", { params: { clientId: clientId, templateType: 'individual' } })
       .then(response => {
         commit("GET_LOAN_APPLICATION_TEMPLATE_SUCCESS", response);
 

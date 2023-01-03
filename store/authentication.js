@@ -66,8 +66,8 @@ const actions = {
   async _authenticate({ commit, dispatch }, requestbody) {
     commit("AUTHENTICATE");
     delete this.$api.defaults.headers.common["Authorization"];
-    await this.$api
-      .$post("authentication", requestbody)
+    await this.$axios
+      .$post("/api/authentication", requestbody)
       .then((response) => {
         commit("AUTHENTICATE_SUCCESS", response);
         dispatch("selfserviceclient", null, { root: true });
@@ -79,8 +79,8 @@ const actions = {
   },
   async selfserviceclient({ commit, dispatch }) {
     commit("GET_CLIENT");
-    await this.$api
-      .$get("clients")
+    await this.$axios
+      .$get("/api/clients")
       .then((response) => {
         commit("GET_CLIENT_SUCCESS", response);
         dispatch("_getclientprofile", response.pageItems[0].id, { root: true });
@@ -93,8 +93,8 @@ const actions = {
 
   async _getclientprofile({ commit }, Id) {
     commit("GET_CLIENT_IMAGE");
-    await this.$api
-      .$get(`clients/${Id}/images?maxHeight=150`)
+    await this.$axios
+      .$get(`/api/clients/${Id}/images?maxHeight=150`)
       .then((response) => {
         commit("GET_CLIENT_IMAGE_SUCCESS", response);
       })

@@ -37,7 +37,7 @@ const mutations = {
 const actions = {
   async _getbeneficiaries({ commit }) {
     commit("GET_BENEFICIARIES");
-    await this.$api.get(`beneficiaries/tpt`)
+    await this.$axios.get(`/api/beneficiaries/tpt`)
       .then((response) => {
 
         commit("GET_BENEFICIARIES_SUCCESS", response);
@@ -49,8 +49,8 @@ const actions = {
   },
   async _createbeneficiary({ commit }, beneficiary) {
 
-    await this.$api
-      .post("beneficiaries/tpt", beneficiary)
+    await this.$axios
+      .post("/api/beneficiaries/tpt", beneficiary)
       .then((response) => {
 
 
@@ -62,7 +62,7 @@ const actions = {
   },
   async _getbeneficiaryaccounttypetemplate({ commit }) {
     commit("GET_ACCOUNTS_TYPE");
-    await this.$api.$get("beneficiaries/tpt/template")
+    await this.$axios.$get("/api/beneficiaries/tpt/template")
       .then(response => {
         commit("GET_ACCOUNTS_TYPE_SUCCESS", response);
 

@@ -22,8 +22,8 @@ const mutations = {
 const actions = {
   async _gettransactions({ commit }, clientId) {
     commit("GET_TRANSACTIONS");
-    await this.$api
-      .get(`clients/${clientId}/transactions`)
+    await this.$axios
+      .get(`/api/clients/${clientId}/transactions`)
       .then((response) => {
         commit("GET_TRANSACTIONS_SUCCESS", response);
       })

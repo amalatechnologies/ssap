@@ -39,7 +39,7 @@ const mutations = {
 const actions = {
   async retrievephysicians({ commit }) {
     commit("GET_PATIENT_CREATION_TEMPLATE");
-    await this.$api.$get(`patients/?command=template`)
+    await this.$axios.$get(`/api/patients/?command=template`)
       .then(response => {
         commit("GET_PATIENT_CREATION_TEMPLATE_SUCCESS", response);
 
@@ -52,7 +52,7 @@ const actions = {
   },
   async retrieve_medicine_template({ commit }) {
     commit("MEDICINE_TEMPLATE");
-    await this.$api.$get(`pharmacy/medicines/template/`)
+    await this.$axios.$get(`/api/pharmacy/medicines/template/`)
       .then(response => {
         commit("MEDICINE_TEMPLATE_SUCCESS", response);
       }).catch(error => {
