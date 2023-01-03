@@ -74,7 +74,9 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+
     '@nuxtjs/toast',
+    "@nuxt/postcss8"
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -84,6 +86,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    "@nuxtjs/proxy",
     '@nuxtjs/toast',
     'nuxt-material-design-icons',
     ['cookie-universal-nuxt', { parseJSON: false }],
@@ -103,6 +106,7 @@ export default {
     publicPath: process.env.NODE_ENV === 'production' ? '/assets/' : '',
     extend(config, ctx) { },
     postcss: {
+      plugins: {},
       preset: {
         features: {
           customProperties: false
@@ -159,6 +163,7 @@ export default {
   axios: {
     proxy: true
   },
+
 
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
