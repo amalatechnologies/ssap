@@ -69,7 +69,8 @@
       "help": "Help",
       "share": "Share",
       "logout": "Logout",
-      "guarantors":"Guarantors"
+      "guarantors": "Guarantors",
+      "guaranteerequests": "Guarantee requests"
     },
     "message": {
       "nodataavailable": "No Data available ...",

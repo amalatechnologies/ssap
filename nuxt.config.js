@@ -25,7 +25,7 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: 'Amala',
+    titleTemplate: 'Amala Yangu',
     title: 'Amala Yangu',
     meta: [
       ...meta,
@@ -59,6 +59,7 @@ export default {
     "~/plugins/i18n.js",
     '~/plugins/vuetify.js',
     '~/plugins/axios',
+    '~/plugins/aaxios',
     '~/plugins/filters.js',
     '~/plugins/pwa.client.js',
     '~/mixins/mixins.js',
@@ -131,7 +132,7 @@ export default {
     meta: {
       /* meta options */
       name: "Amala Yangu",
-      author: "Amala",
+      author: "Amala Yangu",
       description: "Amala Yangu self-service Web Application",
       lang: "en",
       ogType: "website",
@@ -155,7 +156,9 @@ export default {
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    proxy: true
+  },
 
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

@@ -11,13 +11,13 @@
                 <nuxt-link to="/me">
                   <v-avatar color="primary darken-2" size="62">
                     <span v-if="profile.displayName" class="white--text text-h5">{{ profile.displayName.charAt(0)
-                    }}</span>
+}}</span>
                   </v-avatar>
                 </nuxt-link>
               </v-list-item-title>
               <v-list-item-subtitle class="font-weight-bold white--text">{{
-                  profile.displayName
-              }}</v-list-item-subtitle>
+    profile.displayName
+}}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-card>
@@ -64,16 +64,16 @@
               <v-list-item class="ma-0 pl-0" :key="i">
                 <v-list-item-content>
                   <v-list-item-title class="blue--text">{{
-                      notifications[i].title
-                  }}</v-list-item-title>
+    notifications[i].title
+}}</v-list-item-title>
                   <v-list-item-subtitle class="font-weight-normal text-caption">
                     <span class="d-inline-block text-truncate" style="max-width: 350px">
                       {{ notifications[i].message }}
                     </span>
                     <br />
                     <span class="d-inline-block blue--text text-caption">{{
-                        notifications[i].createdAt
-                    }}</span>
+    notifications[i].createdAt
+                      }}</span>
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -168,7 +168,7 @@ export default {
           to: "/beneficiaries",
         },
         {
-          title: "label.menu.guarantors",
+          title: "label.menu.guaranteerequests",
           icon: "mdi-shield-account-variant",
           to: "/guarantors",
         },
