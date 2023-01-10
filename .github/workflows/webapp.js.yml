@@ -37,6 +37,12 @@ jobs:
       - run: rm -R node_modules
       - run: npm install
       - run: npm run production
+
+  deploy:
+    concurrency: ci-${{ github.ref }}
+    needs: [build] # The second job must depend on the first one to complete before running and uses ubuntu-latest instead of windows.
+    runs-on: ubuntu-latest
+    steps:
       # - run: npm test
       - name: Deploy to gihub pages 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
