@@ -56,7 +56,7 @@ jobs:
       - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
         uses: actions/download-artifact@v1
         with:
-          name: site
+          name: "dist"
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
