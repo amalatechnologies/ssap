@@ -3,7 +3,7 @@ import metajs from "./plugins/meta";
 const meta = metajs();
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
-  //target: 'static',
+  target: "static",
   telemetry: true,
   ssr: false,
   router: {
