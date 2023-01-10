@@ -79,8 +79,11 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
+
     "@nuxtjs/vuetify",
+
     "@nuxtjs/toast",
+    "@nuxt/postcss8",
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -90,6 +93,7 @@ export default {
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
+    "@nuxtjs/proxy",
     "@nuxtjs/toast",
     "nuxt-material-design-icons",
     ["cookie-universal-nuxt", { parseJSON: false }],
@@ -109,6 +113,7 @@ export default {
     publicPath: process.env.NODE_ENV === "production" ? "/assets/" : "",
     extend(config, ctx) {},
     postcss: {
+      plugins: {},
       preset: {
         features: {
           customProperties: false,
@@ -162,6 +167,17 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     proxy: true,
+  },
+  proxy: {
+    "/api/": {
+      target:
+        process.env.NODE_ENV === "dev"
+          ? "https://demo.amalastaging.co.tz/fineract-provider/api/v1/self/"
+          : "https://demo.amala.app/fineract-provider/api/v1/self/",
+      pathRewrite: {
+        "^/api/": "",
+      },
+    },
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

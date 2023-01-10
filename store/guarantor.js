@@ -42,9 +42,9 @@ const mutations = {
 
 }
 const actions = {
-  async _applyguarantor({ commit}, payload) {
+  async _applyguarantor({ commit }, payload) {
     commit("APPLY_GUARANTORS");
-    await this.$api.$post(`loans/${payload.loanId}/guarantors`, payload.data)
+    await this.$axios.$post(`/api/loans/${payload.loanId}/guarantors`, payload.data)
       .then(response => {
         commit("APPLY_GUARANTORS_SUCCESS", response);
 
@@ -54,9 +54,9 @@ const actions = {
 
       });
   },
-  async _retrieveguarantors({ commit}, entityId) {
+  async _retrieveguarantors({ commit }, entityId) {
     commit("GET_GUARANTORS");
-    await this.$api.$get(`loans/${entityId}/guarantees`, {params:{status: 100}})
+    await this.$axios.$get(`/api/loans/${entityId}/guarantees`, { params: { status: 100 } })
       .then(response => {
         commit("GET_GUARANTORS_SUCCESS", response);
 
@@ -66,9 +66,9 @@ const actions = {
 
       });
   },
-  async _approveguarantors({ commit}, payload) {
+  async _approveguarantors({ commit }, payload) {
     commit("APPROVE_GUARANTORS");
-    await this.$api.$post(`loans/${payload.loanId}/guarantors/${payload.requestId}/approve`)
+    await this.$axios.$post(`/api/loans/${payload.loanId}/guarantors/${payload.requestId}/approve`)
       .then(response => {
         commit("APPROVE_GUARANTORS_SUCCESS", response);
 
@@ -78,9 +78,9 @@ const actions = {
 
       });
   },
-  async _declineguarantors({ commit}, payload) {
+  async _declineguarantors({ commit }, payload) {
     commit("APPROVE_GUARANTORS");
-    await this.$api.$post(`loans/${payload.loanId}/guarantors/${payload.requestId}/decline`)
+    await this.$axios.$post(`/api/loans/${payload.loanId}/guarantors/${payload.requestId}/decline`)
       .then(response => {
         commit("APPROVE_GUARANTORS_SUCCESS", response);
 

@@ -42,7 +42,7 @@ const mutations = {
 const actions = {
   async _getaccounts({ commit }, clientId) {
     commit("GET_ACCOUNTS");
-    await this.$api.$get(`clients/${clientId}/accounts`)
+    await this.$axios.$get(`/api/clients/${clientId}/accounts`)
       .then(response => {
         commit("GET_ACCOUNTS_SUCCESS", response);
       }).catch(error => {
@@ -53,7 +53,7 @@ const actions = {
 
   async _applyloan({ commit }, payload) {
     commit("POST_LOAN_APPLICATION");
-    await this.$api.$post("loans", payload)
+    await this.$axios.$post("/api/loans", payload)
       .then(response => {
         commit("POST_LOAN_APPLICATION_SUCCESS", response);
       }).catch(error => {
