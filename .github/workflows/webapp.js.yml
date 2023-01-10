@@ -9,7 +9,7 @@ on:
   pull_request:
     branches: [opened, labeled, master]
   issues:
-   types: [opened, labeled]
+    types: [opened, labeled]
   #pull_request:
   # types: [opened, labeled]
 env:
@@ -22,19 +22,19 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [15.x]
+        node: [14, 16, 18]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
 
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm cache verify
       - run: npm cache clean -f
-      - run: rm -rf package-lock.json 
-#      - run: npm i -g npm@6
+      - run: rm -rf package-lock.json
+      #      - run: npm i -g npm@6
       - run: npm i --force
       - run: npm run production
       # - run: npm test
