@@ -39,7 +39,7 @@ jobs:
       - run: npm run production
       # - run: npm test
       - name: Deploy to gihub pages 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+        uses: JamesIves/github-pages-deploy-action@4
         with:
           token: ${{ secrets.GITHUBTOKEN }}
           branch: gh-pages # The branch the action should deploy to.
