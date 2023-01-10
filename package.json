@@ -16,6 +16,9 @@
     "lint": "npm run lint:js",
     "test": "jest"
   },
+  "resolutions": {
+    "jiti": "1.12.7"
+  },
   "engines": {
     "npm": "8.13.2",
     "node": ">=14.17.1 <15"
