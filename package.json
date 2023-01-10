@@ -19,10 +19,6 @@
   "resolutions": {
     "jiti": "1.12.7"
   },
-  "engines": {
-    "npm": "8.13.2",
-    "node": ">=14.17.1 <15"
-  },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.5",
     "@nuxtjs/proxy": "^2.1.0",
