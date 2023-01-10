@@ -27,7 +27,6 @@
     "bulma": "^0.9.4",
     "cookie-universal-nuxt": "^2.2.1",
     "core-js": "^3.23.5",
-    "fibers": "^5.0.1",
     "nuxt": "^2.15.8",
     "nuxt-material-design-icons": "^1.0.4",
     "secure-ls": "^1.2.6",
