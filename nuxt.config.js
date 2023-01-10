@@ -5,7 +5,7 @@ export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   //target: 'static',
   telemetry: true,
-  ssr: true,
+  ssr: false,
   router: {
     mode: "hash",
     base: routerBase,
