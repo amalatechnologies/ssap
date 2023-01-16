@@ -70,6 +70,7 @@ export default {
     "~/plugins/pwa.client.js",
     "~/mixins/mixins.js",
     "~/plugins/vuepersistence.js",
+    { src: "~/plugins/pwa-update.js", mode: "client" },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
