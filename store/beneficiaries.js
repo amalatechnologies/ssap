@@ -30,16 +30,15 @@ const mutations = {
   ["GET_ACCOUNTS_TYPE_SUCCESS"](state, payload) {
     state.showLoader = false;
     state.beneficiaryaccounttype = payload.accountTypeOptions;
-
   },
 };
 
 const actions = {
   async _getbeneficiaries({ commit }) {
     commit("GET_BENEFICIARIES");
-    await this.$axios.get(`/api/beneficiaries/tpt`)
+    await this.$api
+      .get(`/beneficiaries/tpt`)
       .then((response) => {
-
         commit("GET_BENEFICIARIES_SUCCESS", response);
       })
       .catch((err) => {
@@ -48,43 +47,37 @@ const actions = {
       });
   },
   async _createbeneficiary({ commit }, beneficiary) {
-
-    await this.$axios
-      .post("/api/beneficiaries/tpt", beneficiary)
-      .then((response) => {
-
-
-      })
+    await this.$api
+      .post("/beneficiaries/tpt", beneficiary)
+      .then((response) => {})
       .catch((err) => {
         console.log(err);
-
       });
   },
   async _getbeneficiaryaccounttypetemplate({ commit }) {
     commit("GET_ACCOUNTS_TYPE");
-    await this.$axios.$get("/api/beneficiaries/tpt/template")
-      .then(response => {
+    await this.$api
+      .$get("/beneficiaries/tpt/template")
+      .then((response) => {
         commit("GET_ACCOUNTS_TYPE_SUCCESS", response);
-
-      }).catch(error => {
+      })
+      .catch((error) => {
         commit("GET_ACCOUNTS_TYPE_ERROR");
         console.log(error);
-
       });
-
   },
 };
 
 const getters = {
   beneficiaries: function (state) {
-    return state.beneficiaries
+    return state.beneficiaries;
   },
   beneficiaryaccounttype: function (state) {
-    return state.beneficiaryaccounttype
+    return state.beneficiaryaccounttype;
   },
   beneficiary: (state) => (beneficiaryId) => {
-    return state.beneficiaries.find(x => x.id == beneficiaryId)
-  }
+    return state.beneficiaries.find((x) => x.id == beneficiaryId);
+  },
 };
 
 export default {

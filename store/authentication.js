@@ -4,7 +4,7 @@ const state = () => ({
   client: {},
   tenant: "",
   accessToken: null,
-  profileImage: null
+  profileImage: null,
 });
 
 const mutations = {
@@ -21,9 +21,7 @@ const mutations = {
     state.showLoader = false;
     state.profile = payload;
     state.accessToken = payload.base64EncodedAuthenticationKey;
-    localStorage.setItem("accessToken",
-      payload.base64EncodedAuthenticationKey
-    );
+    localStorage.setItem("accessToken", payload.base64EncodedAuthenticationKey);
   },
 
   ["GET_CLIENT"](state) {
@@ -66,13 +64,16 @@ const actions = {
   async _authenticate({ commit, dispatch }, requestbody) {
     commit("AUTHENTICATE");
     delete this.$api.defaults.headers.common["Authorization"];
-    delete this.$axios.defaults.headers.common["Fineract-Platform-TenantId"];
-    this.$axios.setHeader("Fineract-Platform-TenantId", requestbody.tenant)
-    await this.$axios
-      .$post("/api/authentication", { username: requestbody.username, password: requestbody.password })
+    delete this.$api.defaults.headers.common["Fineract-Platform-TenantId"];
+    this.$api.setHeader("Fineract-Platform-TenantId", requestbody.tenant);
+    await this.$api
+      .$post("/authentication", {
+        username: requestbody.username,
+        password: requestbody.password,
+      })
       .then((response) => {
         commit("AUTHENTICATE_SUCCESS", response);
-        commit("TENANT_UPDATED", requestbody.tenant)
+        commit("TENANT_UPDATED", requestbody.tenant);
         dispatch("selfserviceclient", null, { root: true });
       })
       .catch((error) => {
@@ -82,8 +83,8 @@ const actions = {
   },
   async selfserviceclient({ commit, dispatch }) {
     commit("GET_CLIENT");
-    await this.$axios
-      .$get("/api/clients")
+    await this.$api
+      .$get("/clients")
       .then((response) => {
         commit("GET_CLIENT_SUCCESS", response);
         dispatch("_getclientprofile", response.pageItems[0].id, { root: true });
@@ -96,8 +97,8 @@ const actions = {
 
   async _getclientprofile({ commit }, Id) {
     commit("GET_CLIENT_IMAGE");
-    await this.$axios
-      .$get(`/api/clients/${Id}/images?maxHeight=150`)
+    await this.$api
+      .$get(`/clients/${Id}/images?maxHeight=150`)
       .then((response) => {
         commit("GET_CLIENT_IMAGE_SUCCESS", response);
       })
@@ -108,8 +109,7 @@ const actions = {
   },
 
   async _logoutsession({ commit }) {
-    commit('LOGOUT_SESSION')
-
+    commit("LOGOUT_SESSION");
   },
   _updatetenant({ commit, dispatch }, payload) {
     commit("TENANT_UPDATED", payload);
@@ -130,7 +130,9 @@ const getters = {
     return state.profile;
   },
   isAuthenticated: function (state) {
-    return (state.accessToken != null && state.profile.playstoreAccessAllowed) ? true : false;
+    return state.accessToken != null && state.profile.playstoreAccessAllowed
+      ? true
+      : false;
   },
   isPlayStoreAccessAllowed: function (state) {
     return state.profile.playstoreAccessAllowed;
@@ -141,8 +143,7 @@ const getters = {
   },
   profileImage: function (state) {
     return state.profileImage;
-  }
-
+  },
 };
 
 export default {

@@ -22,8 +22,8 @@ const mutations = {
 const actions = {
   async _gettransactions({ commit }, clientId) {
     commit("GET_TRANSACTIONS");
-    await this.$axios
-      .get(`/api/clients/${clientId}/transactions`)
+    await this.$api
+      .get(`/clients/${clientId}/transactions`)
       .then((response) => {
         commit("GET_TRANSACTIONS_SUCCESS", response);
       })
@@ -36,12 +36,11 @@ const actions = {
 
 const getters = {
   transactions: function (state) {
-    return state.transactions
+    return state.transactions;
   },
   transactionaccounttype: function (state) {
-    return state.tansactionaccounttype
-  }
-
+    return state.tansactionaccounttype;
+  },
 };
 
 export default {

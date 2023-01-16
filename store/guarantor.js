@@ -5,7 +5,6 @@ const state = () => ({
 });
 
 const mutations = {
-
   ["GET_GUARANTORS"](state) {
     state.showLoader = true;
   },
@@ -39,59 +38,57 @@ const mutations = {
   ["APPLY_GUARANTORS_SUCCESS"](state, payload) {
     state.showLoader = false;
   },
-
-}
+};
 const actions = {
   async _applyguarantor({ commit }, payload) {
     commit("APPLY_GUARANTORS");
-    await this.$axios.$post(`/api/loans/${payload.loanId}/guarantors`, payload.data)
-      .then(response => {
+    await this.$api
+      .$post(`/loans/${payload.loanId}/guarantors`, payload.data)
+      .then((response) => {
         commit("APPLY_GUARANTORS_SUCCESS", response);
-
-      }).catch(error => {
+      })
+      .catch((error) => {
         commit("APPLY_GUARANTORS_ERROR");
         console.log(error);
-
       });
   },
   async _retrieveguarantors({ commit }, entityId) {
     commit("GET_GUARANTORS");
-    await this.$axios.$get(`/api/loans/${entityId}/guarantees`, { params: { status: 100 } })
-      .then(response => {
+    await this.$api
+      .$get(`/loans/${entityId}/guarantees`, { params: { status: 100 } })
+      .then((response) => {
         commit("GET_GUARANTORS_SUCCESS", response);
-
-      }).catch(error => {
+      })
+      .catch((error) => {
         commit("GET_GUARANTORS_ERROR");
         console.log(error);
-
       });
   },
   async _approveguarantors({ commit }, payload) {
     commit("APPROVE_GUARANTORS");
-    await this.$axios.$post(`/api/loans/${payload.loanId}/guarantors/${payload.requestId}/approve`)
-      .then(response => {
+    await this.$api
+      .$post(`/loans/${payload.loanId}/guarantors/${payload.requestId}/approve`)
+      .then((response) => {
         commit("APPROVE_GUARANTORS_SUCCESS", response);
-
-      }).catch(error => {
+      })
+      .catch((error) => {
         commit("APPROVE_GUARANTORS_ERROR");
         console.log(error);
-
       });
   },
   async _declineguarantors({ commit }, payload) {
     commit("APPROVE_GUARANTORS");
-    await this.$axios.$post(`/api/loans/${payload.loanId}/guarantors/${payload.requestId}/decline`)
-      .then(response => {
+    await this.$api
+      .$post(`/loans/${payload.loanId}/guarantors/${payload.requestId}/decline`)
+      .then((response) => {
         commit("APPROVE_GUARANTORS_SUCCESS", response);
-
-      }).catch(error => {
+      })
+      .catch((error) => {
         commit("APPROVE_GUARANTORS_ERROR");
         console.log(error);
-
       });
-  }
-
-}
+  },
+};
 const getters = {
   guarantorrequests: function (state) {
     return state.guarantorrequests;
@@ -100,14 +97,14 @@ const getters = {
     return state.guarantorrequests.length;
   },
   guarantorrequest: (state) => (requestId) => {
-    return state.guarantorrequests.find(x => x.requestId == requestId)
-  }
-}
+    return state.guarantorrequests.find((x) => x.requestId == requestId);
+  },
+};
 
 export default {
   namespaced: false,
   state,
   mutations,
   actions,
-  getters
-}
+  getters,
+};

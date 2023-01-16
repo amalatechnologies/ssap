@@ -24,8 +24,8 @@ const mutations = {
 const actions = {
   async _gettransferaccs({ commit }) {
     commit("GET_TRANSFER_ACCOUNTS");
-    await this.$axios
-      .get("/api/accounttransfers/template")
+    await this.$api
+      .get("/accounttransfers/template")
       .then((response) => {
         commit("GET_TRANSFER_ACCOUNTS_SUCCESS", response.data);
       })
@@ -36,7 +36,7 @@ const actions = {
   },
 
   async _transfer({ commit }, data) {
-    await this.$axios.$post("/api/accounttransfers", data).then((res) => {
+    await this.$api.$post("/accounttransfers", data).then((res) => {
       console.log(res);
     });
   },
