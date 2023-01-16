@@ -91,7 +91,6 @@ export default {
   // https://go.nuxtjs.dev/pwa
 
   modules: [
-    "@nuxtjs/axios",
     "@nuxtjs/pwa",
     "@nuxtjs/proxy",
     "@nuxtjs/toast",
