@@ -165,20 +165,7 @@ export default {
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {
-    proxy: true,
-  },
-  proxy: {
-    "/api/": {
-      target:
-        process.env.NODE_ENV === "dev"
-          ? "https://demo.amalastaging.co.tz/fineract-provider/api/v1/self/"
-          : "https://demo.amala.app/fineract-provider/api/v1/self/",
-      pathRewrite: {
-        "^/api/": "",
-      },
-    },
-  },
+  axios: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
 

@@ -20,7 +20,6 @@
     "jiti": "1.12.7"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.5",
     "@nuxtjs/proxy": "^2.1.0",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/toast": "^3.3.1",
