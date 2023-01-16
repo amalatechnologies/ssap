@@ -1,60 +1,68 @@
-import Vue from 'vue';
-import VueToasted from 'vue-toasted';
+import Vue from "vue";
+import VueToasted from "vue-toasted";
 Vue.use(VueToasted, {
-  iconPack: 'mdi' // set your iconPack, defaults to material. material|fontawesome|custom-class
-})
-
+  iconPack: "mdi", // set your iconPack, defaults to material. material|fontawesome|custom-class
+});
 
 export default function ({ $axios, redirect, store }, inject) {
-  $axios.setHeader('Content-Type', 'application/json');
+  $axios.setHeader("Content-Type", "application/json");
   //$axios.setToken(store.getters.accessToken, 'Bearer');
-
 
   const api = $axios.create({
     headers: {
       common: {
         Accept: "application/json, text/plain, */*",
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
     },
   });
 
-  api.onRequest(config => {
-    var token = localStorage.getItem('accessToken')
-    var _tenant = localStorage.getItem('tenant');
+  api.onRequest((config) => {
+    var token = localStorage.getItem("accessToken");
+    var _tenant = localStorage.getItem("tenant");
     var tenant = _tenant == null ? "demo" : _tenant;
-    console.log(tenant)
+    console.log(tenant);
 
-    api.setHeader("Access-Control-Allow-Headers", "x-access-token, Origin, Content-Type, Accept");
-    api.setHeader("Fineract-Platform-TenantId", tenant.trim())
-    api.setHeader("Access-Control-Allow-Origin", "*");
+    config.setHeader(
+      "Access-Control-Allow-Headers",
+      "x-access-token, Origin, Content-Type, Accept"
+    );
+    config.setHeader("Fineract-Platform-TenantId", tenant.trim());
+    config.setHeader("Access-Control-Allow-Origin", "*");
     if (config.url != "authentication" && token != null) {
-      api.setHeader("Authorization", "Basic " + token);
+      config.setHeader("Authorization", "Basic " + token);
     }
   });
 
-  api.onError(error => {
-    const message = error.response.data.defaultUserMessage
-    const code = parseInt(error.response && error.response.status)
-
-  })
-  api.onResponse(response => {
+  api.onError((error) => {
+    const message = error.response.data.defaultUserMessage;
+    const code = parseInt(error.response && error.response.status);
+  });
+  api.onResponse((response) => {
     // Vue.toasted.show('Success ', { icon: 'check-circle', type: 'success' });
   });
-  api.onResponseError(error => {
-    const code = parseInt(error.response && error.response.status)
+  api.onResponseError((error) => {
+    const code = parseInt(error.response && error.response.status);
     if (code === 404) {
-      const message = error.response.data.defaultUserMessage
+      const message = error.response.data.defaultUserMessage;
       Vue.toasted.error(`${message}`, {
-        icon: 'close-circle', position: 'top-center', keepOnHover: true, type: 'error',
-        theme: 'bubble', duration: 5000
+        icon: "close-circle",
+        position: "top-center",
+        keepOnHover: true,
+        type: "error",
+        theme: "bubble",
+        duration: 5000,
       });
     }
     if (code === 401) {
       const message = error.response.data.defaultUserMessage;
       Vue.toasted.error(`${message}`, {
-        icon: 'close-circle', position: 'top-center', keepOnHover: true, type: 'info',
-        theme: 'outline', duration: 5000
+        icon: "close-circle",
+        position: "top-center",
+        keepOnHover: true,
+        type: "info",
+        theme: "outline",
+        duration: 5000,
       });
     }
   });
@@ -65,10 +73,12 @@ export default function ({ $axios, redirect, store }, inject) {
   /** For UI developers with no local API **/
   /* api.setBaseURL(  process.env.baseUrl ); */
 
-
   /**For production */
-  api.setBaseURL(process.env.NODE_ENV === "production" ? process.env.baseUrl : process.env.localUrl);
+  api.setBaseURL(
+    process.env.NODE_ENV === "production"
+      ? process.env.baseUrl
+      : process.env.localUrl
+  );
   // Inject to context as $api
   inject("api", api);
 }
-
