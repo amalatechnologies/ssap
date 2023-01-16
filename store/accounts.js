@@ -7,7 +7,6 @@ const state = () => ({
 });
 
 const mutations = {
-
   ["GET_ACCOUNTS"](state) {
     state.showLoader = true;
   },
@@ -37,15 +36,17 @@ const mutations = {
     state.showLoader = false;
     this.$router.push(`/accounts/${payload.resourceId}/loan`);
   },
-}
+};
 
 const actions = {
   async _getaccounts({ commit }, clientId) {
     commit("GET_ACCOUNTS");
-    await this.$axios.$get(`/api/clients/${clientId}/accounts`)
-      .then(response => {
+    await this.$api
+      .$get(`/clients/${clientId}/accounts`)
+      .then((response) => {
         commit("GET_ACCOUNTS_SUCCESS", response);
-      }).catch(error => {
+      })
+      .catch((error) => {
         commit("GET_ACCOUNTS_ERROR");
         console.log(error);
       });
@@ -53,16 +54,17 @@ const actions = {
 
   async _applyloan({ commit }, payload) {
     commit("POST_LOAN_APPLICATION");
-    await this.$axios.$post("/api/loans", payload)
-      .then(response => {
+    await this.$api
+      .$post("/loans", payload)
+      .then((response) => {
         commit("POST_LOAN_APPLICATION_SUCCESS", response);
-      }).catch(error => {
+      })
+      .catch((error) => {
         commit("POST_LOAN_APPLICATION_ERROR");
         console.log(error);
       });
   },
-
-}
+};
 const getters = {
   savingaccounts: function (state) {
     return state.savingsAccounts;
@@ -78,21 +80,29 @@ const getters = {
   },
 
   totalLoanBalance: function (state) {
-    return state.loanAccounts != undefined ? state.loanAccounts.filter(e => e.loanBalance != undefined).reduce(function (accumulator, b) {
-      return accumulator + b.loanBalance
-    }, 0) : "0"
+    return state.loanAccounts != undefined
+      ? state.loanAccounts
+          .filter((e) => e.loanBalance != undefined)
+          .reduce(function (accumulator, b) {
+            return accumulator + b.loanBalance;
+          }, 0)
+      : "0";
   },
   totalSavingBalance: function (state) {
-    return state.savingsAccounts != undefined ? state.savingsAccounts.filter(e => e.accountBalance != undefined).reduce(function (accumulator, b) {
-      return accumulator + b.accountBalance
-    }, 0) : "0"
-  }
-}
+    return state.savingsAccounts != undefined
+      ? state.savingsAccounts
+          .filter((e) => e.accountBalance != undefined)
+          .reduce(function (accumulator, b) {
+            return accumulator + b.accountBalance;
+          }, 0)
+      : "0";
+  },
+};
 
 export default {
   namespaced: false,
   state,
   mutations,
   actions,
-  getters
-}
+  getters,
+};

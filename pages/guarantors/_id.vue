@@ -4,10 +4,7 @@
       <v-toolbar color="primary" tile dark flat>
         <v-toolbar-title>
           <v-avatar color="primary " size="36">
-            <span
-              class="white--text font-weight-bold overline"
-              @click.stop="$router.go(-1)"
-            >
+            <span class="white--text font-weight-bold overline" @click.stop="$router.go(-1)">
               <v-icon large color="white">mdi-keyboard-backspace</v-icon>
             </span>
           </v-avatar>
@@ -15,8 +12,7 @@
         <v-toolbar-title class="white--text">
           &nbsp; &nbsp;
           {{ capitalizeFirstLetter(request.clientName) }} Guarantor
-          Details</v-toolbar-title
-        >
+          Details</v-toolbar-title>
       </v-toolbar>
 
       <v-card class="mt-5 pa-4">
@@ -45,13 +41,7 @@
       </v-card>
 
       <p class="py-4 font-weight-bold">Guarantees</p>
-      <v-card
-        v-for="(d, index) in details"
-        :key="index"
-        class="mt-5 pa-4"
-        color="#FAFAFA"
-        tile
-      >
+      <v-card v-for="(d, index) in details" :key="index" class="mt-5 pa-4" color="#FAFAFA" tile>
         <v-card-text>
           <v-row class="black--text" dense>
             <v-col cols="8">Client Name:</v-col>
@@ -83,9 +73,7 @@
           <v-btn block color="warning" @click="decline">DECLINE</v-btn>
         </v-col>
         <v-col cols="5 ">
-          <v-btn block color="primary" @click="approve" class="font-weight-bold"
-            >APPROVE</v-btn
-          >
+          <v-btn block color="primary" @click="approve" class="font-weight-bold">APPROVE</v-btn>
         </v-col>
       </v-row>
     </v-card>
@@ -116,14 +104,14 @@ export default {
       return status === "Paid" ? "green" : "orange";
     },
     async retrieveguarantordetails() {
-      await this.$axios
+      await this.$api
         .$get(
-          `/api/loans/client/${this.request.guarantorId}/loan/${this.request.loanId}/obligeedetails`
+          `/loans/client/${this.request.guarantorId}/loan/${this.request.loanId}/obligeedetails`
         )
         .then((response) => {
           this.details = response;
         })
-        .catch((error) => {});
+        .catch((error) => { });
     },
     approve() {
       let payload = {

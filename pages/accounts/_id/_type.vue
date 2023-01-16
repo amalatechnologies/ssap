@@ -10,18 +10,14 @@
     <v-toolbar color="primary" tile dark flat>
       <v-toolbar-title>
         <v-avatar color="primary " size="36">
-          <span
-            class="white--text font-weight-bold overline"
-            @click.stop="$router.go(-1)"
-          >
+          <span class="white--text font-weight-bold overline" @click.stop="$router.go(-1)">
             <v-icon large color="white">mdi-keyboard-backspace</v-icon>
           </span>
         </v-avatar>
       </v-toolbar-title>
       <v-toolbar-title class="white--text">
         &nbsp; &nbsp; {{ capitalizeFirstLetter($route.params.type) }} Account
-        Details</v-toolbar-title
-      >
+        Details</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-menu v-if="isloan">
         <template v-slot:activator="{ on, attrs }">
@@ -41,18 +37,9 @@
     </v-toolbar>
 
     <v-container class="pa-0 ma-0" v-if="account">
-      <saving-account-view
-        v-if="this.$route.params.type == 'saving'"
-        :account="account"
-      ></saving-account-view>
-      <view-loan-account
-        v-if="this.$route.params.type == 'loan'"
-        :account="account"
-      ></view-loan-account>
-      <view-share-account
-        v-if="this.$route.params.type == 'share'"
-        :account="account"
-      ></view-share-account>
+      <saving-account-view v-if="this.$route.params.type == 'saving'" :account="account"></saving-account-view>
+      <view-loan-account v-if="this.$route.params.type == 'loan'" :account="account"></view-loan-account>
+      <view-share-account v-if="this.$route.params.type == 'share'" :account="account"></view-share-account>
     </v-container>
   </v-card>
 </template>
@@ -87,34 +74,34 @@ export default {
   },
   methods: {
     async getloanaccountdetails() {
-      await this.$axios
-        .$get(`/api/loans/${this.$route.params.id}`, {
+      await this.$api
+        .$get(`/loans/${this.$route.params.id}`, {
           params: { associations: "repaymentSchedule,transactions,charges" },
         })
         .then((response) => {
           this.account = response;
         })
-        .catch((error) => {});
+        .catch((error) => { });
     },
     async getsavingaccountdetails() {
-      await this.$axios
-        .$get(`/api/savingsaccounts/${this.$route.params.id}`, {
+      await this.$api
+        .$get(`/savingsaccounts/${this.$route.params.id}`, {
           params: { associations: "transactions,charges" },
         })
         .then((response) => {
           this.account = response;
         })
-        .catch((error) => {});
+        .catch((error) => { });
     },
     async getshareaccountdetails() {
-      await this.$axios
-        .$get(`/api/shareaccounts/${this.$route.params.id}`, {
+      await this.$api
+        .$get(`/shareaccounts/${this.$route.params.id}`, {
           params: { associations: "transactions, charges" },
         })
         .then((response) => {
           this.account = response;
         })
-        .catch((error) => {});
+        .catch((error) => { });
     },
     applyguarantor() {
       this.$router.push(`/accounts/${this.$route.params.id}/guarantors`);

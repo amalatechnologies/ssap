@@ -10,51 +10,22 @@
     <v-container>
       <v-row>
         <v-col class="d-flex" cols="12" sm="6">
-          <v-select
-            :items="template.productOptions"
-            v-model="loanapplication.productId"
-            label="Select loan Product"
-            @change="productchange()"
-            item-text="name"
-            item-value="id"
-            dense
-            required
-          ></v-select>
+          <v-select :items="template.productOptions" v-model="loanapplication.productId" label="Select loan Product"
+            @change="productchange()" item-text="name" item-value="id" dense required></v-select>
         </v-col>
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
-          <v-select
-            :items="producttemplate.loanPurposeOptions"
-            v-model="loanapplication.loanPurposeId"
-            label="Loan purpose"
-            item-text="name"
-            item-value="id"
-            dense
-            required
-          ></v-select>
+          <v-select :items="producttemplate.loanPurposeOptions" v-model="loanapplication.loanPurposeId"
+            label="Loan purpose" item-text="name" item-value="id" dense required></v-select>
         </v-col>
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
-          <v-text-field
-            v-model="loanapplication.clientCurrentIncome"
-            label="Client current Income"
-            hint="Client current Income"
-            required
-          ></v-text-field>
+          <v-text-field v-model="loanapplication.clientCurrentIncome" label="Client current Income"
+            hint="Client current Income" required></v-text-field>
         </v-col>
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
-          <v-text-field
-            v-model="loanapplication.principal"
-            label="Principle*"
-            hint="Principal"
-            required
-          ></v-text-field>
+          <v-text-field v-model="loanapplication.principal" label="Principle*" hint="Principal" required></v-text-field>
         </v-col>
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
-          <v-text-field
-            v-model="currency"
-            label="Currency*"
-            hint="Currency"
-            required
-          ></v-text-field>
+          <v-text-field v-model="currency" label="Currency*" hint="Currency" required></v-text-field>
         </v-col>
 
         <!--<v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
@@ -153,10 +124,7 @@
           </v-simple-table>
         </v-col>
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
-          <v-btn color="primary" block @click="submitLoanApplication"
-            >Submit Loan</v-btn
-          ></v-col
-        >
+          <v-btn color="primary" block @click="submitLoanApplication">Submit Loan</v-btn></v-col>
       </v-row>
     </v-container>
   </v-container>
@@ -229,8 +197,8 @@ export default {
       this.$store.dispatch("_getloanapplicationtemplate", this.clientId);
     },
     async productchange() {
-      await this.$axios
-        .$get("/api/loans/template", {
+      await this.$api
+        .$get("/loans/template", {
           params: {
             clientId: this.clientId,
             templateType: "individual",
