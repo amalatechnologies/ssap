@@ -140,7 +140,7 @@ export default {
   data() {
     return {
       tab: null,
-      items: ["Savings", "Loan", "Share"],
+      items: ["Savings", "Loans", "Share"],
     };
   },
   created() {
