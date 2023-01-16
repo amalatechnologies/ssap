@@ -23,14 +23,14 @@ export default function ({ $axios, redirect, store }, inject) {
     var tenant = _tenant == null ? "demo" : _tenant;
     console.log(tenant);
 
-    config.setHeader(
+    api.setHeader(
       "Access-Control-Allow-Headers",
       "x-access-token, Origin, Content-Type, Accept"
     );
-    config.setHeader("Fineract-Platform-TenantId", tenant.trim());
-    config.setHeader("Access-Control-Allow-Origin", "*");
+    api.setHeader("Fineract-Platform-TenantId", tenant.trim());
+    api.setHeader("Access-Control-Allow-Origin", "*");
     if (config.url != "authentication" && token != null) {
-      config.setHeader("Authorization", "Basic " + token);
+      api.setHeader("Authorization", "Basic " + token);
     }
   });
 
