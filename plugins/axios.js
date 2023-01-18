@@ -27,10 +27,11 @@ export default function ({ $axios, redirect, store }, inject) {
       "Access-Control-Allow-Headers",
       "x-access-token, Origin, Content-Type, Accept"
     );
-    api.setHeader("Fineract-Platform-TenantId", tenant.trim());
+
     api.setHeader("Access-Control-Allow-Origin", "*");
-    if (config.url != "authentication" && token != null) {
+    if (config.url != "/authentication" && token != null) {
       api.setHeader("Authorization", "Basic " + token);
+      api.setHeader("Fineract-Platform-TenantId", tenant.trim());
     }
   });
 

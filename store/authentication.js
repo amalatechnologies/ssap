@@ -63,6 +63,7 @@ const mutations = {
 const actions = {
   async _authenticate({ commit, dispatch }, requestbody) {
     commit("AUTHENTICATE");
+    localStorage.setItem("tenant", requestbody.tenant);
     delete this.$api.defaults.headers.common["Authorization"];
     delete this.$api.defaults.headers.common["Fineract-Platform-TenantId"];
     this.$api.setHeader("Fineract-Platform-TenantId", requestbody.tenant);
