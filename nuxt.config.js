@@ -144,11 +144,11 @@ export default {
       /* meta options */
       name: "Amala Yangu",
       author: "Amala Yangu",
-      description: "Amala Yangu self-service Web Application",
+      description: "Amala Yangu self-service  Application",
       lang: "en",
       ogType: "website",
       ogSiteName: "Amala Yangu",
-      ogTitle: "Amala Yangu Web Application",
+      ogTitle: "Amala Yangu Self-service Application",
       ogDescription: "Amala Yangu self-service Web Application",
       ogHost: "https://amala.co.tz",
       ogImage: "https://amalatechnologies.github.io/ssap/preview.png",
