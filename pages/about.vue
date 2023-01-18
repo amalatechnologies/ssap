@@ -4,8 +4,9 @@
       <v-col cols="12" class="d-flex justify-space-around">
         <v-flex xs6 class="d-flex align-center justify-end flex-column">
           <div class="font-weight-black">
-            Made by
-            <a href="https://github.com/ospic" target="_blank">Singo Africa </a>
+            Amala Yangu web self-service application was created and maintained
+            by
+            <a href="https://singo.africa" target="_blank">Singo Africa </a>
             as a web application for
             <a
               style="color: blue; text-decoration: underline"
@@ -13,30 +14,12 @@
               target="_blank"
               >Amala yangu</a
             >
-            self service application Copyright &copy;
-            {{ new Date().getFullYear() }} The Apache Software Foundation,
-            Licensed under the
-            <a
-              href="https://www.apache.org/licenses/LICENSE-2.0"
-              style="color: blue; text-decoration: underline"
-              target="_blank"
-            >
-              Apache License, Version 2.0.</a
-            >. Documentation can be found
-            <a
-              style="color: blue; text-decoration: underline"
-              href="https://docs.ospicx.com/welcome"
-              target="_blank"
-              >here</a
-            >
-            and you can get to this app repository
-
-            <a
-              style="color: blue; text-decoration: underline"
-              href="https://github.com/ospic/webapp"
-              target="_blank"
-              >here</a
-            >
+            self-service application for financial institution customers to
+            access and manage their accounts informations e.g. Loans, Shares,
+            Savings etc. <br />
+            <br />
+            Copyright &copy;
+            {{ new Date().getFullYear() }}
           </div>
           <v-btn
             class="mt-4 px-4"
@@ -73,7 +56,7 @@ export default {
     payload:{
        password: "password",
        username: "demo",
-      
+
     },
     image:"https://images.squarespace-cdn.com/content/v1/5608c2dae4b0ffbc0ff092a2/1462484735802-94M1A977HJJEL2THCD2Q/ke17ZwdGBToddI8pDm48kLl6r9ydDU0pEbLAVM93WoUUqsxRUqqbr1mOJYKfIPR7IxQp-SzSi0mUVxNxPLQ2a8ST-OHudl8xFkQoit3yJpm7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dtBAdYz4rrMKLrjAsWFNRtjSprFKWBuEhUbdsZxltHXcCjLISwBs8eEdxAxTptZAUg/Medical-physician-doctor-hands.png?format=2500w",
     rules: {
@@ -87,7 +70,7 @@ export default {
   },
   methods: {
     login() {
-      
+
     this.$store.dispatch("_authenticate_then_login",  this.payload)
     },
     nativateToHere(id) {
