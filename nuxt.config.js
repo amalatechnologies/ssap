@@ -1,5 +1,6 @@
 const routerBase = process.env.DEPLOY_ENV === "prod" ? "/ssap/" : "/";
 import metajs from "./plugins/meta";
+const isDev = process.env.NODE_ENV !== 'production'
 const meta = metajs();
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -19,8 +20,7 @@ export default {
   },
 
   env: {
-    baseUrl: "https://demo.amala.app/fineract-provider/api/v1/self/",
-    localUrl: "https://demo.amala.app/fineract-provider/api/v1/self/",
+    baseUrl:  isDev ? "https://localhost:8443/fineract-provider/api/v1/self/":"https://demo.amala.app/fineract-provider/api/v1/self/",
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)

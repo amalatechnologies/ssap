@@ -7,10 +7,10 @@
             <v-list-item v-if="account.summary" two-lin class="py-0 my-0" dense two-line>
               <v-list-item-content>
                 <v-list-item-title>Outstanding Balance</v-list-item-title>
-                <v-list-item-subtitle class="text-body-2 font-weight-normal mt-1">{{ account.currency.code }}
-                  {{
-                      account.summary.totalOutstanding | currency
-                  }}</v-list-item-subtitle>
+                <v-list-item-subtitle class="text-body-2 font-weight-normal mt-1"
+                  >{{ account.currency.code }}
+                  {{ account.summary.totalOutstanding | currency }}</v-list-item-subtitle
+                >
               </v-list-item-content>
             </v-list-item>
             <v-list-item dense two-lin class="py-0 my-0">
@@ -56,8 +56,80 @@
             </v-list-item>
             <v-list-item>
               <v-list-item-content> </v-list-item-content>
-              <v-list-item-action>
-                <v-btn class="text-capitalize" color="primary" @click="applyguarantor()">Request Guarantor</v-btn>
+              <v-list-item-action class="d-flex flex-row">
+                <v-dialog v-model="dialog" width="500" overlay-color="black">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      v-if="tenant == 'demo'"
+                      class="text-capitalize mr-2"
+                      color="white lighten-4"
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      <img
+                        src="@/assets/images/azampay.webp"
+                        class="pa-1"
+                        height="35"
+                        width="120"
+                      />
+                    </v-btn>
+                  </template>
+
+                  <v-card>
+                    <v-card-title class="text-h5 white--text indigo lighten-1">
+                      Mobile Payment
+                    </v-card-title>
+
+                    <v-card-text class="mt-5">
+                      <v-row>
+                        <v-col cols="12">
+                          <v-select
+                            :items="partners"
+                            v-model="payment.provider"
+                            label="Select provider name"
+                            @focus="$store.dispatch('_getpartners')"
+                            item-text="partnerName"
+                            item-value="partnerName"
+                            dense
+                            class="mt-3"
+                            required
+                          ></v-select>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-text-field
+                            v-model="payment.amount"
+                            label="Amount*"
+                            hint="Amount"
+                            type="number"
+                            required
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-text-field
+                            v-model="payment.phone"
+                            label="Phone Number*"
+                            hint="Phone Number"
+                            placeholder="e.g 255716000000"
+                            required
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                    </v-card-text>
+
+                    <v-divider></v-divider>
+
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn color="primary" @click="dialog = false"> Cancel </v-btn>
+                      <v-btn color="warning" @click="initiatePayment">
+                        Initiate Payment
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+                <v-btn class="text-capitalize" color="primary" @click="applyguarantor()"
+                  >Request Guarantor</v-btn
+                >
               </v-list-item-action>
             </v-list-item>
           </v-list>
@@ -77,18 +149,26 @@
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
-            <v-list-item @click="(details = !details), (tab = 1)" dense two-line class="py-0 my-0">
+            <v-list-item
+              @click="(details = !details), (tab = 1)"
+              dense
+              two-line
+              class="py-0 my-0"
+            >
               <v-list-item-avatar color="grey lighten-3">
                 <v-icon color="primary" dark>mdi-currency-rub </v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>Loan Charges</v-list-item-title>
-                <v-list-item-subtitle class="mt-1">
-                  View Charges
-                </v-list-item-subtitle>
+                <v-list-item-subtitle class="mt-1"> View Charges </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
-            <v-list-item @click="(details = !details), (tab = 2)" dense two-line class="py-0 my-0">
+            <v-list-item
+              @click="(details = !details), (tab = 2)"
+              dense
+              two-line
+              class="py-0 my-0"
+            >
               <v-list-item-avatar color="grey lighten-3">
                 <v-icon color="primary" dark>mdi-currency-rub </v-icon>
               </v-list-item-avatar>
@@ -99,7 +179,12 @@
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
-            <v-list-item @click="(details = !details), (tab = 3)" dense two-line class="py-0 my-0">
+            <v-list-item
+              @click="(details = !details), (tab = 3)"
+              dense
+              two-line
+              class="py-0 my-0"
+            >
               <v-list-item-avatar color="grey lighten-3">
                 <v-icon color="primary" dark> mdi-swap-horizontal </v-icon>
               </v-list-item-avatar>
@@ -110,7 +195,12 @@
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
-            <v-list-item @click="(details = !details), (tab = 4)" dense two-line class="py-0 my-0">
+            <v-list-item
+              @click="(details = !details), (tab = 4)"
+              dense
+              two-line
+              class="py-0 my-0"
+            >
               <v-list-item-avatar color="grey lighten-3">
                 <v-icon color="primary" dark> mdi-qrcode </v-icon>
               </v-list-item-avatar>
@@ -144,25 +234,40 @@
 
         <v-tabs-items v-model="tab">
           <v-tab-item>
-            <loan-summary-component :loanPurpose="account.loanPurposeName" :productName="account.loanProductName"
-              :accountNumber="account.accountNo" :status="account.status" :summary="account.summary">
+            <loan-summary-component
+              :loanPurpose="account.loanPurposeName"
+              :productName="account.loanProductName"
+              :accountNumber="account.accountNo"
+              :status="account.status"
+              :summary="account.summary"
+            >
             </loan-summary-component>
           </v-tab-item>
           <v-tab-item>
             <v-list class="pa-3" three-line>
-              <v-list-item class="ma-0 pa-0" v-for="(charge, index) in account.charges" :key="index">
+              <v-list-item
+                class="ma-0 pa-0"
+                v-for="(charge, index) in account.charges"
+                :key="index"
+              >
                 <loan-charge-component :charge="charge"></loan-charge-component>
               </v-list-item>
             </v-list>
           </v-tab-item>
           <v-tab-item>
-            <loan-repayment-component :productName="account.loanProductName" :accountNumber="account.accountNo"
+            <loan-repayment-component
+              :productName="account.loanProductName"
+              :accountNumber="account.accountNo"
               :disbursmentDate="account.timeline.actualDisbursementDate"
-              :numberOfRepayments="account.numberOfRepayments" :repayments="account.repaymentSchedule">
+              :numberOfRepayments="account.numberOfRepayments"
+              :repayments="account.repaymentSchedule"
+            >
             </loan-repayment-component>
           </v-tab-item>
           <v-tab-item>
-            <loan-transactions-component :transactions="account.transactions"></loan-transactions-component>
+            <loan-transactions-component
+              :transactions="account.transactions"
+            ></loan-transactions-component>
           </v-tab-item>
           <v-tab-item>
             <v-card>
@@ -182,6 +287,7 @@
 import LoanSummaryComponent from "@/components/loans/loan_summary.vue";
 import LoanRepaymentComponent from "@/components/loans/loan_repayments.vue";
 import LoanTransactionsComponent from "@/components/loans/loan_transactions.vue";
+import { mapGetters } from "vuex";
 export default {
   components: {
     "loan-summary-component": LoanSummaryComponent,
@@ -192,27 +298,36 @@ export default {
     account: {
       type: Object,
       default: null,
-      required: true
+      required: true,
     },
   },
   data() {
     return {
       details: true,
+      dialog: false,
       tab: null,
       selected: null,
-      items: [
-        "Summary",
-        "Charges",
-        "Repayment Schedule",
-        "Transactions",
-        "QR Code",
-      ],
+      payment: {},
+      items: ["Summary", "Charges", "Repayment Schedule", "Transactions", "QR Code"],
     };
+  },
+  computed: {
+    ...mapGetters({
+      tenant: "tenant",
+      partners: "partners",
+      clientId: "clientId",
+    }),
   },
   methods: {
     applyguarantor() {
-      this.$router.push(`/accounts/${this.$route.params.id}/guarantors/apply`)
-    }
-  }
+      this.$router.push(`/accounts/${this.$route.params.id}/guarantors/apply`);
+    },
+    initiatePayment() {
+      this.payment.loanId = this.account.accountNo;
+      this.payment.clientId = this.clientId;
+      console.log(this.payment);
+      this.$store.dispatch("_initiatePayment", this.payment);
+    },
+  },
 };
 </script>
