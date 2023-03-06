@@ -10,22 +10,51 @@
     <v-container>
       <v-row>
         <v-col class="d-flex" cols="12" sm="6">
-          <v-select :items="template.productOptions" v-model="loanapplication.productId" label="Select loan Product"
-            @change="productchange()" item-text="name" item-value="id" dense required></v-select>
+          <v-select
+            :items="template.productOptions"
+            v-model="loanapplication.productId"
+            label="Select loan Product"
+            @change="productchange()"
+            item-text="name"
+            item-value="id"
+            dense
+            required
+          ></v-select>
         </v-col>
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
-          <v-select :items="producttemplate.loanPurposeOptions" v-model="loanapplication.loanPurposeId"
-            label="Loan purpose" item-text="name" item-value="id" dense required></v-select>
+          <v-select
+            :items="producttemplate.loanPurposeOptions"
+            v-model="loanapplication.loanPurposeId"
+            label="Loan purpose"
+            item-text="name"
+            item-value="id"
+            dense
+            required
+          ></v-select>
         </v-col>
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
-          <v-text-field v-model="loanapplication.clientCurrentIncome" label="Client current Income"
-            hint="Client current Income" required></v-text-field>
+          <v-text-field
+            v-model="loanapplication.clientCurrentIncome"
+            label="Client current Income"
+            hint="Client current Income"
+            required
+          ></v-text-field>
         </v-col>
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
-          <v-text-field v-model="loanapplication.principal" label="Principle*" hint="Principal" required></v-text-field>
+          <v-text-field
+            v-model="loanapplication.principal"
+            label="Principle*"
+            hint="Principal"
+            required
+          ></v-text-field>
         </v-col>
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
-          <v-text-field v-model="currency" label="Currency*" hint="Currency" required></v-text-field>
+          <v-text-field
+            v-model="currency"
+            label="Currency*"
+            hint="Currency"
+            required
+          ></v-text-field>
         </v-col>
 
         <!--<v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
@@ -105,8 +134,7 @@
                   <td>Submission Date</td>
                   <td>
                     {{
-                      producttemplate.timeline.expectedDisbursementDate
-                        | simpledateformat
+                      producttemplate.timeline.expectedDisbursementDate | simpledateformat
                     }}
                   </td>
                 </tr>
@@ -114,8 +142,7 @@
                   <td>Eexpected Disbursment Date</td>
                   <td>
                     {{
-                      producttemplate.timeline.expectedDisbursementDate
-                        | simpledateformat
+                      producttemplate.timeline.expectedDisbursementDate | simpledateformat
                     }}
                   </td>
                 </tr>
@@ -124,7 +151,10 @@
           </v-simple-table>
         </v-col>
         <v-col v-if="producttemplate != null" class="d-flex" cols="12" sm="6">
-          <v-btn color="primary" block @click="submitLoanApplication">Submit Loan</v-btn></v-col>
+          <v-btn color="primary" block @click="submitLoanApplication"
+            >Submit Loan</v-btn
+          ></v-col
+        >
       </v-row>
     </v-container>
   </v-container>
@@ -237,11 +267,9 @@ export default {
           this.loanapplication.repaymentEvery = response.repaymentEvery;
           this.loanapplication.repaymentFrequencyType =
             response.repaymentFrequencyType.id;
-          this.loanapplication.interestRatePerPeriod =
-            response.interestRatePerPeriod;
+          this.loanapplication.interestRatePerPeriod = response.interestRatePerPeriod;
           this.loanapplication.amortizationType = response.amortizationType.id;
-          this.loanapplication.isEqualAmortization =
-            response.isEqualAmortization;
+          this.loanapplication.isEqualAmortization = response.isEqualAmortization;
           this.loanapplication.interestType = response.interestType.id;
           this.loanapplication.interestCalculationPeriodType =
             response.interestCalculationPeriodType.id;
@@ -249,15 +277,12 @@ export default {
             response.allowPartialPeriodInterestCalcualtion;
           this.loanapplication.transactionProcessingStrategyId =
             response.transactionProcessingStrategyId;
-          this.loanapplication.loanPurposeId =
-            response.loanPurposeOptions[0].id;
+          this.loanapplication.loanPurposeId = response.loanPurposeOptions[0].id;
           this.loanapplication.charges = charges;
           this.loanapplication.submittedOnDate = this.expecteddisbursementdate;
-          this.loanapplication.expectedDisbursementDate =
-            this.expecteddisbursementdate;
+          this.loanapplication.expectedDisbursementDate = this.expecteddisbursementdate;
 
-          this.currency =
-            response.currency.name + ` [${response.currency.code}]`;
+          this.currency = response.currency.name + ` [${response.currency.code}]`;
           this.loanapplication.principal = response.principal;
         });
     },
@@ -275,8 +300,7 @@ export default {
   created() {
     this.loadtemplate();
     var d = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
-    var date =
-      d.getDate() + " " + this.months[d.getMonth()] + " " + d.getFullYear();
+    var date = d.getDate() + " " + this.months[d.getMonth()] + " " + d.getFullYear();
     this.submittedondate = date;
     this.expecteddisbursementdate = date;
   },
