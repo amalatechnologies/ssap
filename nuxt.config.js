@@ -1,4 +1,4 @@
-const routerBase = process.env.DEPLOY_ENV === "prod" ? "/ssap/" : "/";
+
 import metajs from "./plugins/meta";
 const isDev = process.env.NODE_ENV !== 'production'
 const meta = metajs();
@@ -9,7 +9,7 @@ export default {
   ssr: false,
   router: {
     mode: "hash",
-    base: routerBase,
+    base: '/',
     routerNameSplitter: "/",
     middleware: ["router"],
   },

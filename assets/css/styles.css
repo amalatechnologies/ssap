@@ -70,17 +70,13 @@ span,
 div {
   -webkit-font-smoothing: antialiased;
   font-style: normal !important;
-  font-size: 12px !important;
   font-family: "Mulish", sans-serif !important;
-  font-weight: 100;
 }
 
 p.primary--text.text-h6 {
   -webkit-font-smoothing: antialiased;
   font-style: normal !important;
-  font-size: 12px !important;
   font-family: "Mulish", sans-serif !important;
-  font-weight: 100;
 }
 
 main {
@@ -120,8 +116,7 @@ main.v-main.login {
 .v-application--wrap footer.v-footer {
   background-color: white !important;
   opacity: 0.65;
-  -webkit-text-decoration-color: black;
-          text-decoration-color: black;
+  text-decoration-color: black;
 }
 
 nav,
@@ -1795,8 +1790,7 @@ text.apexcharts-title-text {
 
 a.link {
   text-decoration: none;
-  -webkit-text-decoration-color: grey;
-          text-decoration-color: grey;
+  text-decoration-color: grey;
 }
 
 h1,

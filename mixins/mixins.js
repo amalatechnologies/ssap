@@ -9,7 +9,10 @@ Vue.mixin({
     'loan-charge-component': LoanChargeComponent,
     'guarantor-request': GuarantorRequestComponent,
     'guarantor-details': GuarantorDetailsComponent,
-  },
+      'skeleton-table-loader': () => import('~/components/loaders/skeleton-table-loader.vue'),
+      'skeleton-datepicker-loader': () => import('~/components/loaders/skeleton-date-picker.vue'),
+      'skeleton-summary-card': () => import('~/components/loaders/skeleton-summary-card.vue')
+    },
   data: function () {
     return {
       mobileBreakPoint: 200,
