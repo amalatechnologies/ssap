@@ -31,8 +31,8 @@ export default function ({ $axios, redirect, store }, inject) {
     api.setHeader("Access-Control-Allow-Origin", "*");
     if (config.url != "/authentication" && token != null) {
       api.setHeader("Authorization", "Basic " + token);
-      api.setHeader("Fineract-Platform-TenantId", tenant.trim());
     }
+    api.setHeader("Fineract-Platform-TenantId", tenant.trim());
   });
 
   api.onError((error) => {
