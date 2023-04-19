@@ -1,34 +1,59 @@
 <template>
   <v-app class="app" style="background: rgba(0, 0, 0, 0)">
     <!--NAVIGATION DRAWER-->
-    <v-navigation-drawer v-model="drawer" mini-variant.sync="mini" overlay-color="primary" app clipped width="270"
-      height="100%" elevation="0">
+    <v-navigation-drawer
+      v-model="drawer"
+      mini-variant.sync="mini"
+      overlay-color="primary"
+      app
+      clipped
+      width="270"
+      height="100%"
+      elevation="0"
+    >
       <v-list nav subheader tile class="mt-0 pa-0 py-0">
-        <v-card elevation="0" color="primary" v-if="profile" class="mx-auto" min-height="150" tile>
+        <v-card
+          elevation="0"
+          color="primary"
+          v-if="profile"
+          class="mx-auto"
+          min-height="150"
+          tile
+        >
           <v-list-item color="rgba(0, 0, 0, .4)" dark>
             <v-list-item-content class="mt-8">
               <v-list-item-title class="text-h6">
                 <nuxt-link to="/me">
                   <v-avatar color="primary darken-2" size="62">
-                    <span v-if="profile.displayName" class="white--text text-h5">{{ profile.displayName.charAt(0)
-}}</span>
+                    <span v-if="profile.displayName" class="white--text text-h5">{{
+                      profile.displayName.charAt(0)
+                    }}</span>
                   </v-avatar>
                 </nuxt-link>
               </v-list-item-title>
               <v-list-item-subtitle class="font-weight-bold white--text">{{
-    profile.displayName
-}}</v-list-item-subtitle>
+                profile.displayName
+              }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-card>
 
         <div v-for="(setting, index) in settings" :key="index">
-
           <v-list-item @click="navigateToHere(setting.to)">
             <v-list-item-title class="font-weight-light">
-              <v-icon slot="prependIcon" v-html="setting.icon" :medium="!showback" :small="showback" color=" primary"
-                class="ml-1 mr-2"></v-icon>
-              <v-badge :content="index === 7 ? requests : ''" :value="index === 7 ? requests : ''" color="green">
+              <v-icon
+                slot="prependIcon"
+                v-html="setting.icon"
+                :medium="!showback"
+                :small="showback"
+                color=" primary"
+                class="ml-1 mr-2"
+              ></v-icon>
+              <v-badge
+                :content="index === 7 ? requests : ''"
+                :value="index === 7 ? requests : ''"
+                color="green"
+              >
                 {{ $t(setting.title) }}
               </v-badge>
             </v-list-item-title>
@@ -41,7 +66,10 @@
     <v-app-bar clipped-left flat fixed app color="primary">
       <v-toolbar-title>
         <v-avatar color="primary " size="36">
-          <span class="white--text font-weight-bold overline" @click.stop="drawer = !drawer">
+          <span
+            class="white--text font-weight-bold overline"
+            @click.stop="drawer = !drawer"
+          >
             <v-icon large color="white">mdi-menu</v-icon>
           </span>
         </v-avatar>
@@ -49,31 +77,46 @@
 
       <v-spacer></v-spacer>
 
-      <v-menu max-width="500" offset-y v-if="notificationnumber > 0" content-class="elevation-1 mt-4 badge">
+      <v-menu
+        max-width="500"
+        offset-y
+        v-if="notificationnumber > 0"
+        content-class="elevation-1 mt-4 badge"
+      >
         <template v-slot:activator="{ on, attrs }">
-          <v-badge :content="notificationnumber" class="mr-8" color="blue lighten-2" overlap>
-            <v-icon v-bind="attrs" v-on="on" color="white" medium>
-              mdi-bell
-            </v-icon>
+          <v-badge
+            :content="notificationnumber"
+            class="mr-8"
+            color="blue lighten-2"
+            overlap
+          >
+            <v-icon v-bind="attrs" v-on="on" color="white" medium> mdi-bell </v-icon>
           </v-badge>
         </template>
         <v-list color="white" tile>
           <v-timeline v-if="notifications.length > 0" align-top dense>
-            <v-timeline-item color="primary" small v-for="(n, i) in notificationnumber > 5 ? 5 : notificationnumber"
-              :key="i" fill-dot class="pt-0 mt-0" icon="mdi-bell-alert">
+            <v-timeline-item
+              color="primary"
+              small
+              v-for="(n, i) in notificationnumber > 5 ? 5 : notificationnumber"
+              :key="i"
+              fill-dot
+              class="pt-0 mt-0"
+              icon="mdi-bell-alert"
+            >
               <v-list-item class="ma-0 pl-0" :key="i">
                 <v-list-item-content>
                   <v-list-item-title class="blue--text">{{
-    notifications[i].title
-}}</v-list-item-title>
+                    notifications[i].title
+                  }}</v-list-item-title>
                   <v-list-item-subtitle class="font-weight-normal text-caption">
                     <span class="d-inline-block text-truncate" style="max-width: 350px">
                       {{ notifications[i].message }}
                     </span>
                     <br />
                     <span class="d-inline-block blue--text text-caption">{{
-    notifications[i].createdAt
-                      }}</span>
+                      notifications[i].createdAt
+                    }}</span>
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -309,7 +352,7 @@ export default {
   computed: {
     ...mapGetters({
       profile: "client",
-      requests: "guarantorrequestsize"
+      requests: "guarantorrequestsize",
     }),
     notificationnumber() {
       return this.notifications.length;

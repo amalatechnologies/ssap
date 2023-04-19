@@ -7,9 +7,7 @@
             <v-list-item two-line>
               <v-list-item-content>
                 <v-list-item-title class="black--text"
-                  ><h4 class="font-weight-regular font-18">
-                    Address
-                  </h4></v-list-item-title
+                  ><h4 class="font-weight-regular font-18">Address</h4></v-list-item-title
                 >
                 <v-list-item-subtitle class="mt-4">
                   <p>Magomeni Watumishi House, Dar es Salaam.</p>
@@ -21,9 +19,7 @@
             <v-list-item two-line>
               <v-list-item-content>
                 <v-list-item-title class="black--text"
-                  ><h4 class="font-weight-regular font-18">
-                    Phone
-                  </h4></v-list-item-title
+                  ><h4 class="font-weight-regular font-18">Phone</h4></v-list-item-title
                 >
                 <v-list-item-subtitle class="mt-4">
                   <p>Reception : +255 766 521 258</p>
@@ -37,18 +33,13 @@
             <v-list-item two-line>
               <v-list-item-content>
                 <v-list-item-title class="black--text"
-                  ><h4 class="font-weight-regular font-18">
-                    Email
-                  </h4></v-list-item-title
+                  ><h4 class="font-weight-regular font-18">Email</h4></v-list-item-title
                 >
                 <v-list-item-subtitle class="mt-4">
                   <p>Office : info@singo.africa</p>
                   <p>
                     Site :
-                    <a
-                      target="_blank"
-                      class="link"
-                      href="https://amala.co.tz/"
+                    <a target="_blank" class="link" href="https://amala.co.tz/"
                       >amala.co.tz</a
                     >
                   </p>
@@ -60,9 +51,7 @@
             <v-list-item two-line>
               <v-list-item-content>
                 <v-list-item-title class="black--text mb-3"
-                  ><h4 class="font-weight-regular font-18">
-                    Social
-                  </h4></v-list-item-title
+                  ><h4 class="font-weight-regular font-18">Social</h4></v-list-item-title
                 >
                 <v-list-item-subtitle class="mt-4">
                   <p>
@@ -98,21 +87,22 @@
           <v-col cols="12" md="2">
             <p>
               All Rights Reserved by
-              <a target="_blank" class="link" href="https://singo.africa"
-                >Singo Africa</a
-              >
+              <a target="_blank" class="link" href="https://singo.africa">Singo Africa</a>
             </p>
           </v-col>
 
           <v-col cols="12" md="6"> </v-col>
           <v-col cols="12" md="4">
             <p>
-            
-              <a  class="link mx-2" href="/#">Terms of Use </a>
-              <a  class="link mx-2" href="/#"
-                >Legal Disclaimer
-              </a>
-              <a target="_blank" class="link" href="https://amala.co.tz/2019/03/19/amala-yangu-mobile-application-privacy-policy/"> Privacy Policy</a>
+              <a class="link mx-2" href="/#">Terms of Use </a>
+              <a class="link mx-2" href="/#">Legal Disclaimer </a>
+              <a
+                target="_blank"
+                class="link"
+                href="https://amala.co.tz/2019/03/19/amala-yangu-mobile-application-privacy-policy/"
+              >
+                Privacy Policy</a
+              >
             </p>
           </v-col>
         </v-row>
@@ -131,7 +121,10 @@ export default {
           icon: "mdi-twitter",
           link: "https://twitter.com/amalaApp",
         },
-        { icon: "mdi-linkedin", link: "https://www.linkedin.com/company/amala-core-banking/" },
+        {
+          icon: "mdi-linkedin",
+          link: "https://www.linkedin.com/company/amala-core-banking/",
+        },
         { icon: "mdi-facebook", link: "https://web.facebook.com/AmalaCoreBanking" },
         { icon: "mdi-instagram", link: "https://www.instagram.com/amala_core_banking/" },
       ],

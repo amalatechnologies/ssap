@@ -18,10 +18,10 @@ const mutations = {
   },
   ["GET_ACCOUNTS_SUCCESS"](state, payload) {
     state.showLoader = false;
-    state.loanAccounts = payload.loanAccounts;
-    state.savingsAccounts = payload.savingsAccounts;
-    state.shareAccounts = payload.shareAccounts;
-    state.guaratorAccounts = payload.guaratorAccounts;
+    state.loanAccounts = payload.loanAccounts.reverse();
+    state.savingsAccounts = payload.savingsAccounts.reverse();
+    state.shareAccounts = payload.shareAccounts.reverse();
+    state.guaratorAccounts = payload.guaratorAccounts.reverse();
   },
   ["POST_LOAN_APPLICATION"](state) {
     state.showLoader = true;

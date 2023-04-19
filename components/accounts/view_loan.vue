@@ -62,21 +62,16 @@
                     <v-btn
                       v-if="tenant == 'demo'"
                       class="text-capitalize mr-2"
-                      color="white lighten-4"
+                      color="primary"
                       v-bind="attrs"
                       v-on="on"
                     >
-                      <img
-                        src="@/assets/images/azampay.webp"
-                        class="pa-1"
-                        height="35"
-                        width="120"
-                      />
+                      Mobile Pay
                     </v-btn>
                   </template>
 
                   <v-card>
-                    <v-card-title class="text-h5 white--text indigo lighten-1">
+                    <v-card-title class="text-h5 white--text primary darken-1">
                       Mobile Payment
                     </v-card-title>
 
@@ -326,7 +321,9 @@ export default {
       this.payment.loanId = this.account.accountNo;
       this.payment.clientId = this.clientId;
       console.log(this.payment);
-      this.$store.dispatch("_initiatePayment", this.payment);
+      this.$store.dispatch("_initiatePayment", this.payment).then(() => {
+        this.dialog = false;
+      });
     },
   },
 };
