@@ -85,16 +85,19 @@
                     </v-col>
                     <v-col>
                       <v-file-input
-                        show-size
-                        counter
-                        multiple
+                        ref="fileupload"
                         chips
-                        type="file"
                         accept="image/*, file/*, application/*"
                         label="Select Document"
                         :rules="rules"
                         @change="onFileChanged($event)"
-                      ></v-file-input>
+                      >
+                        <template v-slot:selection="{ text }">
+                          <v-chip small label color="primary">
+                            {{ text }}
+                          </v-chip>
+                        </template>
+                      </v-file-input>
                     </v-col>
                   </v-row>
                 </v-card-text>
@@ -126,15 +129,16 @@ export default {
       isSelecting: false,
       selectedFile: null,
       valid: true,
-      form: new FormData(),
+
       rules: [
-        (value) =>
-          !value ||
-          value.size < 4000000 ||
-          "Document file size should be less than 4 MB!",
+        (v) => !v || v.size < 2000000 || "File size should be less than 2 MB!",
         (v) => !!v || "Document is required",
       ],
       document: {
+        name: null,
+        description: null,
+      },
+      defaultdocument: {
         name: null,
         description: null,
       },
@@ -164,22 +168,31 @@ export default {
         .catch((error) => {});
     },
     async uploadloanaccountdocument() {
-      this.loading = true;
-      this.form.append("name", this.document.name);
-      this.form.append("description", this.document.description);
-      await this.$api
-        .$post(`/loans/${this.$route.params.id}/documents`, this.form)
-        .then((response) => {
-          this.dialog = false;
-          this.getloanaccountdocuments();
-        })
-        .catch((error) => {});
+      if (this.$refs.form.validate()) {
+        this.loading = true;
+        var form = new FormData();
+        form.append("file", this.selectedFile);
+        form.append("name", this.document.name);
+        form.append("description", this.document.description);
+        await this.$api
+          .$post(`/loans/${this.$route.params.id}/documents`, form)
+          .then((response) => {
+            this.document = this.defaultdocument;
+            this.$refs.fileupload.reset();
+            this.dialog = false;
+            this.getloanaccountdocuments();
+          })
+          .catch((error) => {});
+      }
     },
 
     onFileChanged(e) {
-      this.selectedFile = e[0];
-      this.form.append("file", this.selectedFile);
-      // Do whatever you need with the file, liek reading it with FileReader
+      console.log(e !== null);
+      if (e !== null) {
+        this.selectedFile = e;
+        console.log(e);
+        console.log(this.selectedFile);
+      }
     },
   },
 };
