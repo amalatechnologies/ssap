@@ -8,7 +8,7 @@ Vue.filter("percentage", function (value) {
 Vue.filter("currency", function (value) {
   if (value == null) return "";
   value = value.toString();
-  return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+  return parseFloat(value).toFixed(2) //value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,").toFixed(2);
 });
 
 Vue.filter("dateformat", function (value) {
