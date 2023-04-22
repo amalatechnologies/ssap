@@ -131,7 +131,7 @@ export default {
       valid: true,
 
       rules: [
-        (v) => !v || v.size < 2000000 || "File size should be less than 2 MB!",
+        (v) => !v || v.size < 4000000 || "File size should be less than 2 MB!",
         (v) => !!v || "Document is required",
       ],
       document: {
