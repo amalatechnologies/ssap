@@ -33,7 +33,7 @@ const actions = {
       });
   },
   async _initiatePayment({ }, payload) {
-    await this.$api.post(`/loans/client/checkout`,null, {params:{phone: payload.phone, amount: payload.amount, loanId: payload.loanId, provider: payload.provider, clientId: payload.clientId}})
+    await this.$api.post(`/loans/client/checkout`,null, {params: payload})
       .then((response) => {
       })
       .catch((err) => {
