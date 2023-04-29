@@ -47,7 +47,7 @@
             v-model="payment.password"
             label="One time password*"
             hint="One time password"
-            placeholder="e.g 000000000000005"
+            placeholder="e.g 1234"
             required
           ></v-text-field>
         </v-col>
