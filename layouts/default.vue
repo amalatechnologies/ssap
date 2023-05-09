@@ -141,7 +141,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import FooterComponent from "@/components/HFooter.vue";
+import FooterComponent from "@/components/footers/footer-home.vue";
 export default {
   components: {
     "footer-component": FooterComponent,

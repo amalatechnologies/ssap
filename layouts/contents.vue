@@ -24,11 +24,9 @@
             <v-list-item-content class="mt-8">
               <v-list-item-title class="text-h6">
                 <v-avatar color="primary darken-2" size="62">
-                  <span
-                    v-if="profile.displayName"
-                    class="white--text text-h5"
-                    >{{ profile.displayName.charAt(0) }}</span
-                  ></v-avatar
+                  <span v-if="profile.displayName" class="white--text text-h5">{{
+                    profile.displayName.charAt(0)
+                  }}</span></v-avatar
                 >
               </v-list-item-title>
               <v-list-item-subtitle class="font-weight-bold white--text">{{
@@ -83,9 +81,7 @@
             color="blue lighten-2"
             overlap
           >
-            <v-icon v-bind="attrs" v-on="on" color="white" medium>
-              mdi-bell
-            </v-icon>
+            <v-icon v-bind="attrs" v-on="on" color="white" medium> mdi-bell </v-icon>
           </v-badge>
         </template>
         <v-list color="white" tile>
@@ -105,10 +101,7 @@
                     notifications[i].title
                   }}</v-list-item-title>
                   <v-list-item-subtitle class="font-weight-normal text-caption">
-                    <span
-                      class="d-inline-block text-truncate"
-                      style="max-width: 350px"
-                    >
+                    <span class="d-inline-block text-truncate" style="max-width: 350px">
                       {{ notifications[i].message }}
                     </span>
                     <br />
@@ -137,7 +130,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import FooterComponent from "@/components/HFooter.vue";
+import FooterComponent from "@/components/footers/footer-home.vue";
 export default {
   components: {
     "footer-component": FooterComponent,
@@ -350,4 +343,3 @@ export default {
   },
 };
 </script>
-

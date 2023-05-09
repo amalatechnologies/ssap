@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import FooterComponent from "@/components/TFooter.vue";
+import FooterComponent from "@/components/footers/footer-index.vue";
 export default {
   components: {
     "footer-component": FooterComponent,
