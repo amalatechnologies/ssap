@@ -78,9 +78,9 @@
       <v-spacer></v-spacer>
 
       <v-menu
-        max-width="500"
+        max-width="600"
         offset-y
-        v-if="notificationnumber > 0"
+        v-if="notifications"
         content-class="elevation-1 mt-4 badge"
       >
         <template v-slot:activator="{ on, attrs }">
@@ -93,39 +93,39 @@
             <v-icon v-bind="attrs" v-on="on" color="white" medium> mdi-bell </v-icon>
           </v-badge>
         </template>
-        <v-list color="white" tile>
-          <v-timeline v-if="notifications.length > 0" align-top dense>
+        <v-list color="white" dense tile>
+          <v-timeline v-if="notifications" align-top dense>
             <v-timeline-item
               color="primary"
               small
-              v-for="(n, i) in notificationnumber > 5 ? 5 : notificationnumber"
+              v-for="(n, index) in notifications"
               :key="i"
               fill-dot
               class="pt-0 mt-0"
               icon="mdi-bell-alert"
             >
-              <v-list-item class="ma-0 pl-0" :key="i">
+              <v-list-item dense class="ma-0 pl-0" :key="index">
                 <v-list-item-content>
                   <v-list-item-title class="blue--text">{{
-                    notifications[i].title
+                    n.content
                   }}</v-list-item-title>
                   <v-list-item-subtitle class="font-weight-normal text-caption">
-                    <span class="d-inline-block text-truncate" style="max-width: 350px">
-                      {{ notifications[i].message }}
-                    </span>
-                    <br />
                     <span class="d-inline-block blue--text text-caption">{{
-                      notifications[i].createdAt
+                      n.createdAt
                     }}</span>
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
               <v-divider></v-divider>
             </v-timeline-item>
+            <v-timeline-item small color="blue">
+              <v-list-item to="/notifications" dense class="ma-0 pl-0">
+                <v-list-item-content>
+                  <v-list-item-title class="blue--text">View All</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-timeline-item>
           </v-timeline>
-          <v-list-item class="d-flex justify-center">
-            <nuxt-link to="/notifications">View All</nuxt-link>
-          </v-list-item>
         </v-list>
       </v-menu>
     </v-app-bar>
@@ -163,13 +163,6 @@ export default {
       menulist: 0,
       username: "Abasi Abasi Mwinyi Mkuu",
       image: 0,
-      notifications: [
-        {
-          title: "Notification title",
-          message: "Message",
-          createdAt: "12th June 2022",
-        },
-      ],
 
       titles: {
         title: "Ospic",
@@ -288,6 +281,7 @@ export default {
     this.$nextTick(function () {
       window.setInterval(() => {
         console.log("Notifications");
+        this.$store.dispatch("_getnotifications");
         //this.$store.dispatch("_getnewnotifications");
       }, 20000);
     });
@@ -352,11 +346,10 @@ export default {
   computed: {
     ...mapGetters({
       profile: "client",
+      notifications: "notifications",
       requests: "guarantorrequestsize",
+      notificationnumber: "totalNotifications",
     }),
-    notificationnumber() {
-      return this.notifications.length;
-    },
   },
 };
 </script>

@@ -10,20 +10,18 @@
         <v-timeline-item
           color="primary"
           small
-          v-for="(notification, i) in notifications"
-          :key="i"
+          v-for="(n, key) in notifications"
+          :key="key"
         >
           <v-row class="pt-1" no-gutters dense>
             <v-col cols="1">
-              <strong class="primary--text text-caption">{{
-                notification.createdAt
-              }}</strong>
+              <strong class="primary--text text-caption">{{ key + 1 }}</strong>
             </v-col>
             <v-col>
-              <strong>{{ notification.title }}</strong>
+              <strong>{{ n.createdAt }}</strong>
               <div class="caption">
                 <p>
-                  {{ notification.message }}
+                  {{ n.content }}
                 </p>
               </div>
             </v-col>
@@ -35,8 +33,8 @@
                       v-bind="attrs"
                       v-on="on"
                       color="primary"
-                      @click.stop="markasread(notification)"
-                      v-if="notification.isNew"
+                      @click.stop="markasread(n)"
+                      v-if="!n.isRead"
                       >mdi-checkbox-marked-circle-outline</v-icon
                     >
                   </template>
@@ -58,11 +56,11 @@ export default {
     total: 10,
   }),
   created() {
-    this.$store.dispatch("_getallnotifications");
+    this.$store.dispatch("_getnotifications");
   },
   methods: {
     fetchnotifications: function () {
-      this.$store.dispatch("_getallnotifications");
+      this.$store.dispatch("_getnotifications");
     },
     markasread: function (notification) {
       this.$store.dispatch("_readnotification", notification.id).then(() => {
@@ -75,7 +73,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      notifications: "allnotifications",
+      notifications: "notifications",
     }),
   },
 };
