@@ -65,13 +65,8 @@
     </v-navigation-drawer>
     <v-app-bar clipped-left flat fixed app color="primary">
       <v-toolbar-title>
-        <v-avatar color="primary " size="36">
-          <span
-            class="white--text font-weight-bold overline"
-            @click.stop="drawer = !drawer"
-          >
-            <v-icon large color="white">mdi-menu</v-icon>
-          </span>
+        <v-avatar @click.stop="drawer = !drawer" color="primary " size="45">
+          <img src="icon.png" alt="Amala Yangu" />
         </v-avatar>
       </v-toolbar-title>
 
