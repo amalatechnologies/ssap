@@ -20,7 +20,7 @@ export default {
   },
 
   env: {
-    baseUrl:  isDev ? "https://demo.amalastaging.co.tz/fineract-provider/api/v1/self/":"https://demo.amala.app/fineract-provider/api/v1/self/",
+    baseUrl:  "https://demo.amalastaging.co.tz/fineract-provider/api/v1/self/",
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -63,12 +63,12 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    "~/mixins/mixins.js",
     "~/plugins/i18n.js",
     "~/plugins/vuetify.js",
     "~/plugins/axios",
     "~/plugins/filters.js",
     "~/plugins/pwa.client.js",
-    "~/mixins/mixins.js",
     "~/plugins/vuepersistence.js",
     { src: "~/plugins/pwa-update.js", mode: "client" },
   ],

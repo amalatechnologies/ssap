@@ -1,22 +1,16 @@
 import Vue from "vue";
 import { mapGetters } from "vuex";
-import LoanChargeComponent from "@/components/charges/loan_charges.vue";
-import GuarantorRequestComponent from "@/components/guarantors/guarantor_request.vue";
-import GuarantorDetailsComponent from "@/components/guarantors/guarantor-details.vue";
-Vue.mixin({
+const mixins = {
   layout: "default",
   components: {
-    "loan-charge-component": LoanChargeComponent,
-    "guarantor-request": GuarantorRequestComponent,
-    "guarantor-details": GuarantorDetailsComponent,
-    "skeleton-table-loader": () =>
-      import("~/components/loaders/skeleton-table-loader.vue"),
-    "skeleton-datepicker-loader": () =>
-      import("~/components/loaders/skeleton-date-picker.vue"),
-    "skeleton-summary-card": () =>
-      import("~/components/loaders/skeleton-summary-card.vue"),
+    "loan-charge-component": () => import('~/components/charges/loan_charges.vue'),
+    "guarantor-request":()=>import('~/components/guarantors/guarantor_request.vue'),
+    "guarantor-details": ()=>import('~/components/guarantors/guarantor-details.vue'),
+    "skeleton-table-loader": () =>import("~/components/loaders/skeleton-table-loader.vue"),
+    "skeleton-datepicker-loader": () => import("~/components/loaders/skeleton-date-picker.vue"),
+    "skeleton-summary-card": () =>import("~/components/loaders/skeleton-summary-card.vue"),
   },
-  data: function () {
+  data () {
     return {
       mobileBreakPoint: 200,
       months: [
@@ -67,4 +61,6 @@ Vue.mixin({
       clientId: "clientId",
     }),
   },
-});
+}
+
+Vue.mixin(mixins)

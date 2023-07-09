@@ -93,8 +93,8 @@
             <v-timeline-item
               color="primary"
               small
-              v-for="(n, index) in notifications"
-              :key="i"
+              v-for="(n, index) in notifications.splice(0, 5)"
+              :key="index"
               fill-dot
               class="pt-0 mt-0"
               icon="mdi-bell-alert"

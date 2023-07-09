@@ -99,17 +99,25 @@ export default {
   },
   computed: {
     ...mapGetters({
+      tenant: "tenant",
       clientId: "clientId",
     }),
   },
   methods: {
     initiatePayment() {
-      this.payment.loanId = this.account.accountNo;
-      this.payment.clientId = this.clientId;
-      this.payment.type = "bank";
-      this.$store.dispatch("_initiatePayment", this.payment).then(() => {
+      if (this.tenant === "demo1") {
+        this.payment.loanId = this.account.accountNo;
+        this.payment.clientId = this.clientId;
+        this.payment.type = "bank";
+        this.$store.dispatch("_initiatePayment", this.payment).then(() => {
+          this.$emit("close");
+        });
+      } else {
         this.$emit("close");
-      });
+        this.$toast.error(
+          "Sorry!, \n Bank payment is not allowed in your organization.\nContact your organization to  allow the service"
+        );
+      }
     },
   },
 };
