@@ -38,7 +38,7 @@
       </v-menu>
     </v-toolbar>
 
-    <v-container class="pa-0 ma-0" v-if="account">
+    <v-container fluid class="pa-0 ma-0" v-if="account">
       <saving-account-view
         v-if="this.$route.params.type == 'saving'"
         :account="account"

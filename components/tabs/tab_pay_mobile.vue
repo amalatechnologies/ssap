@@ -81,18 +81,26 @@ export default {
   },
   computed: {
     ...mapGetters({
+      tenant: "tenant",
       partners: "partners",
       clientId: "clientId",
     }),
   },
   methods: {
     initiatePayment() {
-      this.payment.loanId = this.account.accountNo;
-      this.payment.clientId = this.clientId;
-      this.payment.type = "mno";
-      this.$store.dispatch("_initiatePayment", this.payment).then(() => {
+      if (this.tenant === "demo") {
+        this.payment.loanId = this.account.accountNo;
+        this.payment.clientId = this.clientId;
+        this.payment.type = "mno";
+        this.$store.dispatch("_initiatePayment", this.payment).then(() => {
+          this.$emit("close");
+        });
+      } else {
         this.$emit("close");
-      });
+        this.$toast.error(
+          "Sorry!, Mobile payment is not allowed in your organization. Kindly contact your organization to allow the service"
+        );
+      }
     },
   },
 };

@@ -21,7 +21,7 @@ export default function ({ $axios, redirect, store }, inject) {
     var token = localStorage.getItem("accessToken");
     var _tenant = localStorage.getItem("tenant");
     var tenant = _tenant == null ? "demo" : _tenant;
-    console.log(tenant);
+    //console.log(tenant);
 
     api.setHeader(
       "Access-Control-Allow-Headers",
@@ -44,7 +44,7 @@ export default function ({ $axios, redirect, store }, inject) {
   });
   api.onResponseError((error) => {
     const code = parseInt(error.response && error.response.status);
-    if (code === 404) {
+    if (code === 405) {
       const message = error.response.data.defaultUserMessage;
       Vue.toasted.error(`${message}`, {
         icon: "close-circle",

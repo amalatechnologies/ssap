@@ -60,17 +60,16 @@
                 <v-dialog v-model="dialog" width="500" overlay-color="black">
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                      v-if="tenant == 'demo' && account.status.active"
-                      class="text-capitalize text-h5 font-weight-black mr-2 px-8"
-                      color="blue"
+                      v-if="account.status.active"
+                      class="text-capitalize text-h5 font-weight-bold mr-2 px-8"
+                      color="indigo darken-3"
                       dark
                       v-bind="attrs"
-                      rounded
                       large
                       v-on="on"
                     >
-                      <v-icon large left class="pr-3">mdi-cash-sync</v-icon>
-                      Pay Now
+                      <v-icon large left class="pr-3">mdi-bank-transfer</v-icon>
+                      Mobile Payment
                     </v-btn>
                   </template>
 
