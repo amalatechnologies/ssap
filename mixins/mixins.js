@@ -55,9 +55,7 @@ export default  {
       return this.$vuetify.breakpoint.mdAndUp;
     },
     clientId() {
-      return {
-        ...this.$store.getters.clientId
-      }
+      return this.$store.getters.clientId
     }
   },
 }
