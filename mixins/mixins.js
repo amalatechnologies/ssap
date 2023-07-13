@@ -1,7 +1,4 @@
-import Vue from "vue";
-import { mapGetters } from "vuex";
-const mixins = {
-  layout: "default",
+export default  {
   components: {
     "loan-charge-component": () => import('~/components/charges/loan_charges.vue'),
     "guarantor-request":()=>import('~/components/guarantors/guarantor_request.vue'),
@@ -57,10 +54,10 @@ const mixins = {
     isMdAndUp() {
       return this.$vuetify.breakpoint.mdAndUp;
     },
-    ...mapGetters({
-      clientId: "clientId",
-    }),
+    clientId() {
+      return {
+        ...this.$store.getters.clientId
+      }
+    }
   },
 }
-
-Vue.mixin(mixins)

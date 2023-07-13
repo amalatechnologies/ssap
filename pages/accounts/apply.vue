@@ -289,7 +289,7 @@ export default {
     savesumittedondate(date) {
       this.$refs.sumittedonmenu.save(date);
     },
-    expecteddisbursementdate(date) {
+    expectedDisbursementDate(date) {
       this.$refs.expecteddisbursementmenu.save(date);
     },
     submitLoanApplication: function () {

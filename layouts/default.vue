@@ -93,7 +93,7 @@
             <v-timeline-item
               color="primary"
               small
-              v-for="(n, index) in notifications.splice(0, 5)"
+              v-for="(n, index) in splicednotifications"
               :key="index"
               fill-dot
               class="pt-0 mt-0"
@@ -136,6 +136,9 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Vue from "vue";
+import mixins from "~/mixins/mixins.js";
+Vue.mixin(mixins);
 import FooterComponent from "@/components/footers/footer-home.vue";
 export default {
   components: {
@@ -342,6 +345,7 @@ export default {
     ...mapGetters({
       profile: "client",
       notifications: "notifications",
+      splicednotifications: "splicednotifications",
       requests: "guarantorrequestsize",
       notificationnumber: "totalNotifications",
     }),

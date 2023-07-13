@@ -18,10 +18,10 @@ const mutations = {
   },
   ["GET_ACCOUNTS_SUCCESS"](state, payload) {
     state.showLoader = false;
-    state.loanAccounts = payload.loanAccounts.reverse();
-    state.savingsAccounts = payload.savingsAccounts.reverse();
-    state.shareAccounts = payload.shareAccounts.reverse();
-    state.guaratorAccounts = payload.guaratorAccounts.reverse();
+    state.loanAccounts = payload.loanAccounts.length > 0 ? payload.loanAccounts.reverse():payload.loanAccounts;
+    state.savingsAccounts = payload.savingsAccounts.length > 0 ? payload.savingsAccounts.reverse():payload.savingsAccounts;
+    state.shareAccounts = payload.shareAccounts.length > 0 ? payload.shareAccounts.reverse():payload.shareAccounts;
+    state.guaratorAccounts = payload.guaratorAccounts.length > 0 ? payload.guaratorAccounts.reverse() : payload.guaratorAccounts;
   },
   ["POST_LOAN_APPLICATION"](state) {
     state.showLoader = true;

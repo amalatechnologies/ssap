@@ -20,7 +20,7 @@ export default {
   },
 
   env: {
-    baseUrl:  "https://demo.amala.app/fineract-provider/api/v1/self/",
+    baseUrl: isDev ? "https://demo.amalastaging.co.tz/fineract-provider/api/v1/self/": "https://demo.amala.app/fineract-provider/api/v1/self/",
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -63,13 +63,13 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    "~/mixins/mixins.js",
     "~/plugins/i18n.js",
     "~/plugins/vuetify.js",
     "~/plugins/axios",
     "~/plugins/filters.js",
     "~/plugins/pwa.client.js",
     "~/plugins/vuepersistence.js",
+    "~/mixins/mixins.js",
     { src: "~/plugins/pwa-update.js", mode: "client" },
   ],
 
@@ -151,7 +151,7 @@ export default {
       ogTitle: "Amala Yangu Self-service Application",
       ogDescription: "Amala Yangu self-service Web Application",
       ogHost: "https://amala.co.tz",
-      ogImage: "https://amalatechnologies.github.io/ssap/preview.png",
+      ogImage: "https://mobile.amala.app/preview.png",
       ogUrl: "",
       twitterCard: "Amala Yangu",
       twitterSite: "amalaApp",

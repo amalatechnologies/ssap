@@ -2,6 +2,7 @@ const state = () => ({
   showLoader: Boolean,
   notifications: null,
   totalNotifications: 0,
+  splicednotifications: null,
 });
 
 const mutations = {
@@ -16,6 +17,7 @@ const mutations = {
   },
   ["GET_NOTIFICATIONS_SUCCESS"](state, payload) {
     state.showLoader = false;
+    state.splicednotifications = payload.pageItems.splice(0, 5)
     state.totalNotifications = payload.totalFilteredRecords;
     state.notifications = payload.pageItems;
   },
@@ -41,6 +43,10 @@ const getters = {
   totalNotifications: function (state) {
     return state.totalNotifications;
   },
+  splicednotifications: function (state) {
+    return state.splicednotifications;
+  }
+  
 };
 
 export default {
