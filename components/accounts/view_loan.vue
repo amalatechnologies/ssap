@@ -86,10 +86,16 @@
                       <v-tab class="font-weight-black">BANK</v-tab>
 
                       <v-tab-item>
-                        <tab-mobile-payment :account="account" />
+                        <tab-mobile-payment
+                          :account="account"
+                          v-on:close="dialog = false"
+                        />
                       </v-tab-item>
                       <v-tab-item>
-                        <tab-bank-payment :account="account" />
+                        <tab-bank-payment
+                          :account="account"
+                          v-on:close="dialog = false"
+                        />
                       </v-tab-item>
                     </v-tabs>
                   </v-card>
