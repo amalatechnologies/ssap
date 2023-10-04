@@ -95,6 +95,7 @@ export default {
     return {
       payment: {},
       providers: ["NMB", "CRDB"],
+      tenants: ["demo", "digicash"],
     };
   },
   computed: {
@@ -105,7 +106,7 @@ export default {
   },
   methods: {
     initiatePayment() {
-      if (this.tenant === "demo1") {
+      if (this.tenants.includes(this.tenant)) {
         this.payment.loanId = this.account.accountNo;
         this.payment.clientId = this.clientId;
         this.payment.type = "bank";
