@@ -62,13 +62,13 @@
                     <v-btn
                       v-if="account.status.active"
                       class="text-capitalize text-h5 font-weight-bold mr-2 px-8"
-                      color="indigo darken-3"
+                      color="blue"
                       dark
                       v-bind="attrs"
                       large
                       v-on="on"
                     >
-                      <v-icon large left class="pr-3">mdi-bank-transfer</v-icon>
+                      <v-icon large left class="pr-3">mdi-cellphone-basic</v-icon>
                       Mobile Payment
                     </v-btn>
                   </template>

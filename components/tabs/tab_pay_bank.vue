@@ -95,18 +95,18 @@ export default {
     return {
       payment: {},
       providers: ["NMB", "CRDB"],
-      tenants: ["demo", "digicash"],
     };
   },
   computed: {
     ...mapGetters({
       tenant: "tenant",
       clientId: "clientId",
+      isPaymentAllowed: "isPaymentAllowed",
     }),
   },
   methods: {
     initiatePayment() {
-      if (this.tenants.includes(this.tenant)) {
+      if (this.isPaymentAllowed) {
         this.payment.loanId = this.account.accountNo;
         this.payment.clientId = this.clientId;
         this.payment.type = "bank";

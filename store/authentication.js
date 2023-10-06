@@ -5,6 +5,7 @@ const state = () => ({
   tenant: "",
   accessToken: null,
   profileImage: null,
+  isPaymentAllowed: false,
 });
 
 const mutations = {
@@ -21,6 +22,7 @@ const mutations = {
     state.showLoader = false;
     state.profile = payload;
     state.accessToken = payload.base64EncodedAuthenticationKey;
+    state.isPaymentAllowed = payload.isPaymentAllowed;
     localStorage.setItem("accessToken", payload.base64EncodedAuthenticationKey);
   },
 
@@ -144,6 +146,9 @@ const getters = {
   },
   profileImage: function (state) {
     return state.profileImage;
+  },
+  isPaymentAllowed: (state) => {
+    return state.isPaymentAllowed;
   },
 };
 

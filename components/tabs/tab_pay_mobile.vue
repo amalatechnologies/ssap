@@ -77,7 +77,6 @@ export default {
   data() {
     return {
       payment: {},
-      tenants: ["demo", "digicash"],
     };
   },
   computed: {
@@ -85,11 +84,12 @@ export default {
       tenant: "tenant",
       partners: "partners",
       clientId: "clientId",
+      isPaymentAllowed: "isPaymentAllowed",
     }),
   },
   methods: {
     initiatePayment() {
-      if (this.tenants.includes(this.tenant)) {
+      if (this.isPaymentAllowed) {
         this.payment.loanId = this.account.accountNo;
         this.payment.clientId = this.clientId;
         this.payment.type = "mno";
