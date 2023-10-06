@@ -34,6 +34,7 @@ export default (ctx) => {
           default: "#FFFFFF",
           milky: "#FDFFF5",
           teal: "#00897B",
+          blue: "#0080FF",
           whitish: "F5F5F5",
           deposit: "#14c416",
           button: "#02532b"
