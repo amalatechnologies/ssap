@@ -86,16 +86,10 @@
                       <v-tab class="font-weight-black">BANK</v-tab>
 
                       <v-tab-item>
-                        <tab-mobile-payment
-                          :account="account"
-                          v-on:close="dialog = false"
-                        />
+                        <tab-mobile-payment :account="account" v-on:close="close()" />
                       </v-tab-item>
                       <v-tab-item>
-                        <tab-bank-payment
-                          :account="account"
-                          v-on:close="dialog = false"
-                        />
+                        <tab-bank-payment :account="account" v-on:close="close()" />
                       </v-tab-item>
                     </v-tabs>
                   </v-card>
@@ -303,6 +297,12 @@ export default {
   methods: {
     applyguarantor() {
       this.$router.push(`/accounts/${this.$route.params.id}/guarantors/apply`);
+    },
+    close: function () {
+      this.dialog = false;
+      setTimeout(() => {
+        this.$emit("update");
+      }, 3000);
     },
     initiatePayment() {
       this.payment.loanId = this.account.accountNo;
