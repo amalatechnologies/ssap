@@ -46,6 +46,7 @@
       <view-loan-account
         v-if="this.$route.params.type == 'loan'"
         :account="account"
+        v-on:update="getloanaccountdetails()"
       ></view-loan-account>
       <view-share-account
         v-if="this.$route.params.type == 'share'"
