@@ -278,8 +278,8 @@ export default {
   mounted: function () {
     this.$nextTick(function () {
       window.setInterval(() => {
-        console.log("Notifications");
-        this.$store.dispatch("_getnotifications");
+        //console.log("Notifications");
+        //this.$store.dispatch("_getnotifications");
         //this.$store.dispatch("_getnewnotifications");
       }, 20000);
     });
