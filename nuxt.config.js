@@ -41,7 +41,7 @@ export default {
         name: "description",
         content: "Amala Yangu self-service Web Application",
       },
-
+      { name: "google-site-verification" content: "itV5X-xyo7TGiCdf9VzrZku2CQf5dMQQbBFCZqBZ9_k" },
       //Twitter meta-data
       { hid: "twitter:site", name: "twitter:site", content: "AmalaApp" },
       {
