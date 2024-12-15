@@ -1,12 +1,6 @@
 <template>
   <v-container class="ma-0 pa-0" fluid>
     <v-dialog v-model="dialog" width="500">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
-          Click Me
-        </v-btn>
-      </template>
-
       <v-card>
         <v-card-title class="text-h5 grey primary"> Updates </v-card-title>
 
