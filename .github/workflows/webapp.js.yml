@@ -25,17 +25,19 @@ jobs:
         node: [16.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
 
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm cache verify
-      - run: npm uninstall fibers
-      - run: rm package-lock.json
-      - run: rm -R node_modules
-      - run: npm install
+#      - run: npm cache clean -f
+      - run: rm -rf package-lock.json 
+#      - run: npm i -g npm@6
+      - run: npm i --force
+      #- run: npm install npm@latest -g
+#      - run: npm install webpack-dev-server --save-dev
       - run: npm run production
       # - run: npm test
       - name: Deploy to gihub pages 🚀
