@@ -20,7 +20,7 @@ export default {
   },
 
   env: {
-    baseUrl: "https://demo.amala.app/fineract-provider/api/v1/self/",
+    baseUrl: "https://demo.amalastaging.co.tz/fineract-provider/api/v1/self/",
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -111,7 +111,7 @@ export default {
      ** You can extend webpack config here
      */
     publicPath: process.env.NODE_ENV === "production" ? "/assets/" : "",
-    extend(config, ctx) {},
+    extend(config, ctx) { },
     postcss: {
       plugins: {},
       preset: {

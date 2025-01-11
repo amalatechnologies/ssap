@@ -42,7 +42,7 @@
             required
           ></v-text-field>
         </v-col>
-        <v-col cols="12">
+        <v-col cols="12" v-if="false">
           <v-text-field
             v-model="payment.password"
             label="One time password*"
@@ -102,17 +102,29 @@ export default {
       tenant: "tenant",
       clientId: "clientId",
       isPaymentAllowed: "isPaymentAllowed",
+      accessToken: "accessToken"
     }),
   },
   methods: {
-    initiatePayment() {
+    async initiatePayment() {
       if (this.isPaymentAllowed) {
         this.payment.loanId = this.account.accountNo;
         this.payment.clientId = this.clientId;
         this.payment.type = "bank";
+        this.payment.password = this.accessToken;
+        /** 
         this.$store.dispatch("_initiatePayment", this.payment).then(() => {
           this.$emit("close");
         });
+        **/
+
+        await this.$api.post(`/loans/client/checkout`,null, {params: this.payment})
+          .then((response) => {
+            this.$emit("challenge", response);
+      })
+      .catch((err) => {
+        this.$emit("close");
+      });
       } else {
         this.$emit("close");
         this.$toast.error(

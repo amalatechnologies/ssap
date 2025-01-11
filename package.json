@@ -4,7 +4,7 @@
   "private": true,
   "description": "Amala Self service webb app",
   "scripts": {
-    "dev": "NODE_ENV=dev nuxt",
+    "dev": "nuxt",
     "builddev": "NODE_ENV=dev nuxt build",
     "build": "nuxt build",
     "start": "NODE_ENV=production nuxt start",

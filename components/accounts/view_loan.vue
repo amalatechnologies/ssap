@@ -1,5 +1,49 @@
 <template>
   <v-container class="ma-0 pa-0" fluid>
+    <v-dialog
+      v-model="challengeDialog"
+      persistent
+      max-width="600px"
+    >
+    <v-card>
+      <v-toolbar
+              color="primary"
+              dark flat elevation="0"
+            >Answer challenge</v-toolbar>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col
+                cols="12"
+                sm="12"
+                md="12"
+              >
+                <v-text-field
+                v-model="challenge"
+                  label="Challenge *"
+                  required
+                ></v-text-field>
+              </v-col>
+              </v-row>
+              </v-container>
+              </v-card-text>
+              <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="warning darken-1" small
+            @click="challengeDialog = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            color="primary darken-1" small
+            @click="answerChallenge"
+          >
+            Answer
+          </v-btn>
+        </v-card-actions>
+              </v-card>
+  </v-dialog>
     <v-container fluid class="ma-0 pa-0">
       <v-container v-if="details" fluid class="ma-0 pa-0">
         <v-card tile>
@@ -86,10 +130,10 @@
                       <v-tab class="font-weight-black">BANK</v-tab>
 
                       <v-tab-item>
-                        <tab-mobile-payment :account="account" v-on:close="close()" />
+                        <tab-mobile-payment :account="account" v-on:close="close()"  />
                       </v-tab-item>
                       <v-tab-item>
-                        <tab-bank-payment :account="account" v-on:close="close()" />
+                        <tab-bank-payment :account="account" v-on:close="close()" v-on:challenge="openChallengeDialog($event)" />
                       </v-tab-item>
                     </v-tabs>
                   </v-card>
@@ -280,6 +324,11 @@ export default {
     return {
       details: true,
       dialog: false,
+      challengeDialog: false,
+      challenge: null,
+      consent: {
+        consentId: 0
+      },
       tab: null,
       tbs: null,
       selected: null,
@@ -300,9 +349,15 @@ export default {
     },
     close: function () {
       this.dialog = false;
+      this.challengeDialog = false;
       setTimeout(() => {
         this.$emit("update");
       }, 3000);
+    },
+    openChallengeDialog: function (event) {
+      this.dialog = false;
+      this.challengeDialog = true;
+      this.consent = event.data;
     },
     initiatePayment() {
       this.payment.loanId = this.account.accountNo;
@@ -312,6 +367,12 @@ export default {
         this.dialog = false;
       });
     },
+    async answerChallenge () {
+      await this.$api.post(`/loans/client/challenge`, {consentId: this.consent.consentId, challenge: this.challenge})
+          .then((_response) => {
+            this.close()
+      })
+    }
   },
 };
 </script>
