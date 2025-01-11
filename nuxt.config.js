@@ -110,7 +110,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    //publicPath: process.env.NODE_ENV === "production" ? "/assets/" : "",
+    publicPath: isDev ? "" : "/ssap/assets/",
     extend(config, ctx) { },
     postcss: {
       plugins: {},
