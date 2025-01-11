@@ -9,7 +9,7 @@ export default {
   ssr: false,
   router: {
     mode: "hash",
-    base: '/',
+    base: isDev ? '' : "/ssap/",
     routerNameSplitter: "/",
     middleware: ["router"],
   },
@@ -110,7 +110,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    publicPath: process.env.NODE_ENV === "production" ? "/assets/" : "",
+    //publicPath: process.env.NODE_ENV === "production" ? "/assets/" : "",
     extend(config, ctx) { },
     postcss: {
       plugins: {},
