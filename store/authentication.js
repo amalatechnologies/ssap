@@ -52,6 +52,7 @@ const mutations = {
   },
   ["LOGOUT_SESSION"](state, payload) {
     //state.tenant = "demo";
+    window.localStorage.removeItem("vuex")
     window.localStorage.removeItem("accessToken");
     state.accessToken = null;
     this.$router.push("/signin");

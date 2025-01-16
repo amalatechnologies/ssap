@@ -1,13 +1,13 @@
-export default  {
+export default {
   components: {
     "loan-charge-component": () => import('~/components/charges/loan_charges.vue'),
-    "guarantor-request":()=>import('~/components/guarantors/guarantor_request.vue'),
-    "guarantor-details": ()=>import('~/components/guarantors/guarantor-details.vue'),
-    "skeleton-table-loader": () =>import("~/components/loaders/skeleton-table-loader.vue"),
+    "guarantor-request": () => import('~/components/guarantors/guarantor_request.vue'),
+    "guarantor-details": () => import('~/components/guarantors/guarantor-details.vue'),
+    "skeleton-table-loader": () => import("~/components/loaders/skeleton-table-loader.vue"),
     "skeleton-datepicker-loader": () => import("~/components/loaders/skeleton-date-picker.vue"),
-    "skeleton-summary-card": () =>import("~/components/loaders/skeleton-summary-card.vue"),
+    "skeleton-summary-card": () => import("~/components/loaders/skeleton-summary-card.vue"),
   },
-  data () {
+  data() {
     return {
       mobileBreakPoint: 200,
       months: [
@@ -26,17 +26,18 @@ export default  {
       ],
       banks: [
         {
-          name: "CRDB Bank",
-          subtitle:"CRDB Bank Plc",
-          value: "CRDB",
-          logo: "/crdb.png",
-        },
-        {
           name: "NMB Bank",
-          subtitle:"NMB Bank Plc",
+          subtitle: "NMB Bank Plc",
           value: "NMB",
           logo: "/nmb.png",
         },
+        {
+          name: "CRDB Bank",
+          subtitle: "CRDB Bank Plc",
+          value: "CRDB",
+          logo: "/crdb.png",
+        },
+
       ],
     };
   },
