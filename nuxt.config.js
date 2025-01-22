@@ -9,7 +9,7 @@ export default {
   ssr: false,
   router: {
     mode: "hash",
-    base: isDev ? '' : "/ssap/",
+    base: isDev ? '' : '/',
     routerNameSplitter: "/",
     middleware: ["router"],
   },
